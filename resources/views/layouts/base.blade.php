@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/color-01.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/flexslider.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}" />
     @livewireStyles
 </head>
 
@@ -95,46 +96,50 @@
                                     </ul>
                                 </li>
                                 @if (Route::has('login'))
-                                    @auth
-                                        @if(Auth::user()->utype === 'ADM')
-                                            <li class="menu-item menu-item-has-children parent">
-                                                <a title="My Account" href="#">My Account Admin {{Auth::user()->name}}<i
-                                                        class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                                <ul class="submenu curency">
-                                                    <li class="menu-item">
-                                                        <a title="Dashboard" href="{{ route('admin.dashboard')}}">Dashboard</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a title="products" href="{{ route('admin.categories') }}">category</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a title="Products"
-                                                           href="{{route('admin.products')}}">Products</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a title="Manager Home Slider" href="{{route('admin.slider')}}">Manager
-                                                            Home
-                                                            Slider</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="{{route('logout')}}"
-                                                           onclick="event.preventDefault(); document.querySelector('#logout-form').submit();">Logout</a>
-                                                    </li>
-                                                    <form id="logout-form" method="POST" action='{{route('logout')}}'>
-                                                        @csrf
-                                                    </form>
-                                                </ul>
-                                            </li>
-                                        @else
-                                            <li class="menu-item menu-item-has-children parent">
-                                                <a title="My Account" href="#">My Account {{Auth::user()->name}}<i
-                                                        class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                                <ul class="submenu curency">
-                                                    <li class="menu-item">
-                                                        <a title="Dashboard" href="{{ route('user.dashboard')}}">Dashboard</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="{{route('logout')}}"
+                                @auth
+                                @if(Auth::user()->utype === 'ADM')
+                                <li class="menu-item menu-item-has-children parent">
+                                    <a title="My Account" href="#">My Account Admin {{Auth::user()->name}}<i
+                                            class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul class="submenu curency">
+                                        <li class="menu-item">
+                                            <a title="Dashboard" href="{{ route('admin.dashboard')}}">Dashboard</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="products" href="{{ route('admin.categories') }}">category</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Products" href="{{route('admin.products')}}">Products</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Manager Home Slider" href="{{route('admin.slider')}}">Manager
+                                                Home
+                                                Slider</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Manager Home Slider"
+                                                href="{{route('admin.add.categories.home')}}"> Manager Home
+                                                Categories</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{route('logout')}}"
+                                                onclick="event.preventDefault(); document.querySelector('#logout-form').submit();">Logout</a>
+                                        </li>
+                                        <form id="logout-form" method="POST" action='{{route('logout')}}'>
+                                            @csrf
+                                        </form>
+                                    </ul>
+                                </li>
+                                @else
+                                <li class="menu-item menu-item-has-children parent">
+                                    <a title="My Account" href="#">My Account {{Auth::user()->name}}<i
+                                            class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul class="submenu curency">
+                                        <li class="menu-item">
+                                            <a title="Dashboard" href="{{ route('user.dashboard')}}">Dashboard</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{route('logout')}}"
                                                 onclick="event.preventDefault();document.getElementById('form').submit();">Logout</a>
                                         </li>
                                         <form id="form" method="POST" action='{{route('logout')}}'>
@@ -566,6 +571,7 @@
     <script src="{{asset('assets/js/jquery.countdown.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
     <script src="{{asset('assets/js/functions.js')}}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     @livewireScripts
 </body>
 
