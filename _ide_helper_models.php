@@ -34,11 +34,48 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\HomeCategory
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeCategory query()
+ */
+	class HomeCategory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\HomeSlide
  *
+ * @property int $id
+ * @property string $title
+ * @property string $subtitle
+ * @property string $price
+ * @property string $link
+ * @property string $image
+ * @property string $status
+ * @property string|null $colortitle
+ * @property string|null $colorsubtitle
+ * @property string|null $colorsaleinfo
+ * @property string|null $colorsale
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide query()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereColorsale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereColorsaleinfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereColorsubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereColortitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomeSlide whereUpdatedAt($value)
  */
 	class HomeSlide extends \Eloquent {}
 }
