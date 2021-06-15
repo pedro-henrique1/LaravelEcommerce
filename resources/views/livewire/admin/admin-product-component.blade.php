@@ -34,6 +34,7 @@
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Status</>
+                                    <th>Sale Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                     <td>XL</td>
                                     <td>{{ $product->quantify }}</td>
                                     <td>{{ $product->regular_price }}</td>
+                                    <td>{{ $product->sale_price }}</td>
                                     <td>{{ $product->stock_status }}</td>
                                     <td>
                                         <a href="{{route('admin.products.edit', ['product_slug' => $product->slug])}}"><i
@@ -71,6 +73,6 @@
 {{-- <script>
  if ($produc->stock_status) == 'instock' {
         .css('color': green)
-    }    
-   
+    }
+
 </script> --}}
