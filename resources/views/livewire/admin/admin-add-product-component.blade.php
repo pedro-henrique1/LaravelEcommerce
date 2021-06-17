@@ -139,7 +139,7 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label"></label>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary col-md-4">Submit</button>
+                            <button type="submit" id="form-submit" class="btn btn-primary col-md-4">Submit</button>
                         </div>
                     </div>
 
@@ -148,3 +148,19 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $('#form-submit').on('click', function () {
+
+        Swal.fire({
+            title: 'Product created',
+            text: 'Do you want to continue',
+            icon: 'success',
+            confirmButtonText: 'Cool',
+        })
+    })
+
+</script>
