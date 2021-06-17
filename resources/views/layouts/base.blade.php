@@ -180,6 +180,7 @@
                                     </a>
                                 </div>
                                 <div class="wrap-icon-section minicart">
+                                    @if (Auth::check())
                                     <a href="{{route('product.cart')}}" class="link-direction">
                                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                         <div class="left-info">
@@ -189,6 +190,7 @@
                                             <span class="title">CART</span>
                                         </div>
                                     </a>
+                                    @endif
                                 </div>
                                 <div class="wrap-icon-section show-up-after-1024">
                                     <a href="#" class="mobile-navigation">
@@ -252,6 +254,7 @@
         </div>
     </header>
     {{$slot}}
+    @include('sweetalert::alert')
     <footer id="footer">
         <div class="wrap-footer-content footer-style-1">
 

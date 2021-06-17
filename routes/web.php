@@ -56,8 +56,8 @@ Route::middleware(["auth:sanctum", "verified"])->prefix('user')->group(
 );
 
 //['auth:sanctum', 'verified']
-//["auth:sanctum", "verified", "authadmin"]
-Route::middleware(['auth:sanctum', 'verified'])->prefix('admin/')->group(
+//["auth:sanctum", "verified", ""]
+Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->group(
     function () {
         Route::get("dashboard", AdminDashboardComponent::class)->name(
             "admin.dashboard"
