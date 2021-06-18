@@ -15,10 +15,6 @@
                 </div>
             </div>
             <div class="panel-body" style="border: 2px solid #ccc">
-                @if (Session::has('message'))
-                <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
-                @endif
-
                 <form class="form-horizontal g-3" method="POST" enctype="multipart/form-data"
                     wire:submit.prevent="addProduct">
                     {{ csrf_field() }}
@@ -149,17 +145,17 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#form-submit').on('click', function () {
 
         Swal.fire({
             title: 'Product created',
-            text: 'Do you want to continue',
+            text: 'product has been created sucessfully',
             icon: 'success',
-            confirmButtonText: 'Cool',
+            confirmButtonText: 'Ok',
         })
     })
 
