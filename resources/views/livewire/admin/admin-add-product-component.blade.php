@@ -148,14 +148,33 @@
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- <style>
+    .swal2-popup {
+        font-family: "Ubuntu";
+        font-size: 14px;
+    }
+
+</style> --}}
 <script>
     $('#form-submit').on('click', function () {
+        const Toast = Swal.mixin({
+            toast: true,
+            customClass: 'swal-height',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            heightAuto: false,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                .css('fontSize: 14px;')
+        })
 
-        Swal.fire({
-            title: 'Product created',
-            text: 'product has been created sucessfully',
+        Toast.fire({
             icon: 'success',
-            confirmButtonText: 'Ok',
+            title: 'Product has bee created successfully'
         })
     })
 
