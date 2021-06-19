@@ -22,32 +22,32 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Name</label>
                         <div class="col-md-4">
-                            <input name="" id="" class="form-control input-md" type="text" placeholder="Product Name"
-                                wire:model="name" wire:keyup="generateSlug">
+                            <input name="productName" id="" class="form-control input-md" type="text"
+                                placeholder="Product Name" wire:model="name" wire:keyup="generateSlug">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product slug</label>
                         <div class="col-md-4">
-                            <input name="" id="" class="form-control input-md" type="text" placeholder="Slug"
-                                wire:model="slug">
+                            <input name="productSlug" id="productSlug" class="form-control input-md" type="text"
+                                placeholder="Slug" wire:model="slug">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Short Description</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" name="" id="" placeholder="Short Description" rows="5"
-                                wire:model="short_description"></textarea>
+                            <textarea class="form-control" name="shortDescription" id="shortDescription"
+                                placeholder="Short Description" rows="5" wire:model="short_description"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Description</label>
                         <div class="col-md-4">
-                            <textarea class="form-control" name="" id="" placeholder="Description" rows="5"
-                                wire:model="description">
+                            <textarea class="form-control" name="description" id="description" placeholder="Description"
+                                rows="5" wire:model="description">
                         </textarea>
                         </div>
                     </div>
@@ -55,23 +55,23 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Regular Price</label>
                         <div class="col-md-4">
-                            <input name="" id="" class="form-control input-md" type="text" placeholder="Regular Price"
-                                wire:model="regular_price">
+                            <input name="regularPrice" id="regularPrice" class="form-control input-md" type="text"
+                                placeholder="Regular Price" wire:model="regular_price">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Sale Price</label>
                         <div class="col-md-4">
-                            <input name="" id="" class="form-control input-md" type="text" placeholder="Sale Price"
-                                wire:model="sale_price">
+                            <input name="salePrice" id="" class="form-control input-md" type="text"
+                                placeholder="Sale Price" wire:model="sale_price">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">SKU</label>
                         <div class="col-md-4">
-                            <input type="text" name="" id="" class="form-control input-md" placeholder="SKU"
+                            <input type="text" name="sku" id="sku" class="form-control input-md" placeholder="SKU"
                                 wire:model="SKU">
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Stock</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="" id="" wire:model="stock_status">
+                            <select class="form-control" name="stock" id="stock" wire:model="stock_status">
                                 <option value="instock">InStock</option>
                                 <option value="outofstock">Out of Stock</option>
                             </select>
@@ -89,7 +89,7 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Featured</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="" id="" wire:model="featured">
+                            <select class="form-control" name="featured" id="featured" wire:model="featured">
                                 <option value="0">Yes</option>
                                 <option value="1">No</option>
                             </select>
@@ -99,15 +99,15 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Quantity</label>
                         <div class="col-md-4">
-                            <input type="text" name="" id="" class="form-control input-md" placeholder="Quantity"
-                                wire:model="quantity">
+                            <input type="text" name="quantity" id="quantity" class="form-control input-md"
+                                placeholder="Quantity" wire:model="quantity">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Image</label>
                         <div class="col-md-4">
-                            <input type="file" class="input-file" wire:model="image">
+                            <input type="file" name="image" id="image" class="input-file" wire:model="image">
                             @if ($image)
                             <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
                                 class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
@@ -123,7 +123,7 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Category</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="" id="" wire:model="category_id">
+                            <select class="form-control" name="category" id="category" wire:model="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -144,38 +144,93 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{-- <style>
-    .swal2-popup {
-        font-family: "Ubuntu";
-        font-size: 14px;
-    }
 
-</style> --}}
+
+
+@push('scripts')
 <script>
-    $('#form-submit').on('click', function () {
-        const Toast = Swal.mixin({
-            toast: true,
-            customClass: 'swal-height',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 4000,
-            heightAuto: false,
-            timerProgressBar: true,
-            didOpen: (toast) => {
+    $(document).ready(function () {
+        $('#form-submit').valid({
+            errorPlacement: function (error, element) {
+                element.parent("input").next("input").html(error);
+            },
+            success: function (label) {
+                label.removeClass("error").addClass("ok");
+            },
+            rules: {
+                productName: {
+                    required: true,
+                },
+
+                productSlug: {
+                    required: true,
+                },
+
+                shortDescription: {
+                    required: true,
+                },
+
+                description: {
+                    required: true,
+                },
+
+                regularPrice: {
+                    required: true,
+                },
+
+                sku: {
+                    required: true,
+                },
+
+                stock: {
+                    required: true,
+                },
+
+                featured: {
+                    required: true,
+                },
+
+                quantity: {
+                    required: true,
+                },
+
+                image: {
+                    required: true,
+                },
+
+                category: {
+                    required: true,
+                }
+            },
+            // messages: {
+            // productName: {
+            // required: 'You need to type the title',
+            // },
+            // },
+            // submitHandler: function (form) {
+            //     form.submit();
+            // }
+        });
+        $(`#form-submit`).click(() => {
+            const Toast = Swal.mixin({
+                toast: true,
+                customClass: 'swal-height',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-                .css('fontSize: 14px;')
-        })
 
-        Toast.fire({
-            icon: 'success',
-            title: 'Product has bee created successfully'
-        })
-    })
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Product has bee created successfully'
+            })
+        });
+    });
 
 </script>
+@endpush

@@ -23,10 +23,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/color-01.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/flexslider.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.min.css') }}" />
     @livewireStyles
 </head>
 
 <body class="home-page home-01 ">
+    @include('sweetalert::alert')
+
     @if (app()->isLocal()) @endif
     <!-- mobile menu -->
     <div class="mercado-clone-wrap">
@@ -254,7 +257,6 @@
         </div>
     </header>
     {{$slot}}
-    @include('sweetalert::alert')
     <footer id="footer">
         <div class="wrap-footer-content footer-style-1">
 
@@ -565,6 +567,7 @@
             </div>
         </div>
     </footer>
+
     <script src="{{asset('assets/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
     <script src="{{asset('assets/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
@@ -575,6 +578,10 @@
     <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
     <script src="{{asset('assets/js/functions.js')}}"></script>
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/validate.addicional.min.js') }}"></script>
+    @stack('scripts')
     @livewireScripts
 </body>
 
