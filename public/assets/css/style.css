@@ -5700,6 +5700,7 @@ table.shop_attributes tbody {
 .wrap-address-billing .row-in-form:nth-child(2n + 1) {
     margin-right: 30px;
 }
+/* estilo do alerta */
 
 .summary-checkout {
     background-color: #fdfdfd;
