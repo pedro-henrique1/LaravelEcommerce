@@ -24,6 +24,8 @@
                         <div class="col-md-4">
                             <input name="productName" id="" class="form-control input-md" type="text"
                                 placeholder="Product Name" wire:model="name" wire:keyup="generateSlug">
+                            @error('name') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -32,6 +34,8 @@
                         <div class="col-md-4">
                             <input name="productSlug" id="productSlug" class="form-control input-md" type="text"
                                 placeholder="Slug" wire:model="slug">
+                            @error('slug') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -40,6 +44,8 @@
                         <div class="col-md-4">
                             <textarea class="form-control" name="shortDescription" id="shortDescription"
                                 placeholder="Short Description" rows="5" wire:model="short_description"></textarea>
+                            @error('short_description') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -48,7 +54,9 @@
                         <div class="col-md-4">
                             <textarea class="form-control" name="description" id="description" placeholder="Description"
                                 rows="5" wire:model="description">
-                        </textarea>
+                            </textarea>
+                            @error('description') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -57,6 +65,8 @@
                         <div class="col-md-4">
                             <input name="regularPrice" id="regularPrice" class="form-control input-md" type="text"
                                 placeholder="Regular Price" wire:model="regular_price">
+                            @error('regular_price') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -65,6 +75,8 @@
                         <div class="col-md-4">
                             <input name="salePrice" id="" class="form-control input-md" type="text"
                                 placeholder="Sale Price" wire:model="sale_price">
+                            @error('sale_price') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -73,6 +85,8 @@
                         <div class="col-md-4">
                             <input type="text" name="sku" id="sku" class="form-control input-md" placeholder="SKU"
                                 wire:model="SKU">
+                            @error('SKU') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -101,6 +115,8 @@
                         <div class="col-md-4">
                             <input type="text" name="quantity" id="quantity" class="form-control input-md"
                                 placeholder="Quantity" wire:model="quantity">
+                            @error('quantity') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -108,6 +124,8 @@
                         <label class="col-md-4 control-label">Product Image</label>
                         <div class="col-md-4">
                             <input type="file" name="image" id="image" class="input-file" wire:model="image">
+                            @error('image') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                             @if ($image)
                             <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
                                 class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
@@ -129,6 +147,8 @@
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
+                            @error('category_id') <span class='text-danger'>{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
