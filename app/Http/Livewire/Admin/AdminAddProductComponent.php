@@ -27,6 +27,20 @@ class AdminAddProductComponent extends Component
     public $image;
     public $category_id;
 
+    protected $rules = [
+        'name' => 'required|max:255|min:5',
+        'slug' => 'required|max:255|min:5',
+        'short_description' => 'required|max:600|min:20',
+        'description' => 'required|max:600|min:20',
+        'regular_price' => 'required|digits_between:1,4|numeric',
+        'sale_price' => 'required|digits_between:1,4|numeric',
+        'SKU' => 'required|min:4|max:8',
+        'stock_status' => 'required',
+        'featured' => 'required',
+        'quantity' => 'required|numeric|min:1|max:5',
+        'image' => 'required|image|size:512',
+        'category_id' => 'required|unique:connection.categories'
+    ];
 
     public function mount()
     {
@@ -41,6 +55,7 @@ class AdminAddProductComponent extends Component
 
     public function addProduct()
     {
+        $this->validate();
         $product = new Product();
         $product->name = $this->name;
         $product->slug = $this->slug;
@@ -57,8 +72,6 @@ class AdminAddProductComponent extends Component
         $product->image = $imageName;
         $product->category_id = $this->category_id;
         $product->save();
-//        session()->flash('message', 'Product has been created successfully');
-        // $this->redirect(route('admin.products'));
     }
 
     public function render()
