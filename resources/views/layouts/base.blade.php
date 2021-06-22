@@ -579,8 +579,6 @@
     <script src="{{asset('assets/js/functions.js')}}"></script>
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/validate.min.js') }}"></script>
-    <script src="{{ asset('assets/js/validate.addicional.min.js') }}"></script>
     @stack('scripts')
     @livewireScripts
 </body>
