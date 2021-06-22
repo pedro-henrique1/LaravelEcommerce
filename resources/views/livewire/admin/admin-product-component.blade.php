@@ -23,36 +23,35 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered">
                             <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Category Name</th>
-                                    <th>Name</th>
-                                    <th>SKU</th>
-                                    <th>Size</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Status</>
-                                    <th>Sale Price</th>
-                                    <th>Action</th>
-                                </tr>
+                            <tr>
+                                <th>Image</th>
+                                <th>Category Name</th>
+                                <th>Name</th>
+                                <th>SKU</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Sale Price</th>
+                                <th>Status</th>
+                                <th style="width: 77px">Action</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @foreach($products as $product)
+                            @foreach($products as $product)
+
                                 <tr>
                                     <td>
                                         <img src="{{asset('assets/images/products')}}/{{$product->image}}"
-                                            alt="{{$product->name}}" width="60" />
+                                             alt="{{$product->name}}" width="60"/>
                                     </td>
                                     <td>{{ $product->slug }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->SKU }}</td>
-                                    <td>XL</td>
                                     <td>{{ $product->quantify }}</td>
                                     <td>{{ $product->regular_price }}</td>
                                     <td>{{ $product->sale_price }}</td>
-                                    <td>{{ $product->stock_status }}</td>
+                                    <td class="stock">{{ $product->stock_status }}</td>
                                     <td>
                                         <a href="{{route('admin.products.edit', ['product_slug' => $product->slug])}}"><i
                                                 class="fa fa-edit fa-2x"></i></a>
@@ -60,7 +59,8 @@
                                                 class="fa fa-times fa-2x text-danger" style="margin-left: 10px"></i></a>
                                     </td>
                                 </tr>
-                                @endforeach
+
+                            @endforeach
                             </tbody>
                         </table>
                         {{$products->links()}}
@@ -70,9 +70,3 @@
         </div>
     </div>
 </div>
-{{-- <script>
- if ($produc->stock_status) == 'instock' {
-        .css('color': green)
-    }
-
-</script> --}}
