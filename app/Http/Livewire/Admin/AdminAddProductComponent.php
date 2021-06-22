@@ -36,10 +36,9 @@ class AdminAddProductComponent extends Component
         'sale_price' => 'required|digits_between:1,4|numeric',
         'SKU' => 'required|min:4|max:8',
         'stock_status' => 'required',
-        'featured' => 'required',
-        'quantity' => 'required|numeric|min:1|max:5',
-        'image' => 'required|image|size:512',
-        'category_id' => 'required|unique:connection.categories'
+        'quantity' => 'required|numeric',
+        'image' => 'required|image',
+        // 'category_id' => 'required|unique:connection.categories'
     ];
 
     public function mount()

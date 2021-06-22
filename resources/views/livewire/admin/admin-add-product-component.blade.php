@@ -1,4 +1,12 @@
 <div>
+    <style>
+        .error {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: #CF0000;
+        }
+
+    </style>
     <div class="container" style="padding: 30px 0;">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -16,15 +24,15 @@
             </div>
             <div class="panel-body" style="border: 2px solid #ccc">
                 <form class="form-horizontal g-3" method="POST" enctype="multipart/form-data"
-                    wire:submit.prevent="addProduct">
+                      wire:submit.prevent="addProduct">
                     {{ csrf_field() }}
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Name</label>
                         <div class="col-md-4">
-                            <input name="productName" id="" class="form-control input-md" type="text"
-                                placeholder="Product Name" wire:model="name" wire:keyup="generateSlug">
-                            @error('name') <span class='text-danger'>{{ $message }}</span>
+                            <input name="productName" id="productname" class="form-control input-md" type="text"
+                                   placeholder="Product Name" wire:model="name" wire:keyup="generateSlug">
+                            @error('name') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -33,8 +41,8 @@
                         <label class="col-md-4 control-label">Product slug</label>
                         <div class="col-md-4">
                             <input name="productSlug" id="productSlug" class="form-control input-md" type="text"
-                                placeholder="Slug" wire:model="slug">
-                            @error('slug') <span class='text-danger'>{{ $message }}</span>
+                                   placeholder="Slug" wire:model="slug">
+                            @error('slug') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -43,8 +51,9 @@
                         <label for="" class="col-md-4 control-label">Short Description</label>
                         <div class="col-md-4">
                             <textarea class="form-control" name="shortDescription" id="shortDescription"
-                                placeholder="Short Description" rows="5" wire:model="short_description"></textarea>
-                            @error('short_description') <span class='text-danger'>{{ $message }}</span>
+                                      placeholder="Short Description" rows="5"
+                                      wire:model="short_description"></textarea>
+                            @error('short_description') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -53,9 +62,9 @@
                         <label for="" class="col-md-4 control-label">Description</label>
                         <div class="col-md-4">
                             <textarea class="form-control" name="description" id="description" placeholder="Description"
-                                rows="5" wire:model="description">
+                                      rows="5" wire:model="description">
                             </textarea>
-                            @error('description') <span class='text-danger'>{{ $message }}</span>
+                            @error('description') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -64,8 +73,8 @@
                         <label class="col-md-4 control-label">Regular Price</label>
                         <div class="col-md-4">
                             <input name="regularPrice" id="regularPrice" class="form-control input-md" type="text"
-                                placeholder="Regular Price" wire:model="regular_price">
-                            @error('regular_price') <span class='text-danger'>{{ $message }}</span>
+                                   placeholder="Regular Price" wire:model="regular_price">
+                            @error('regular_price') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -74,8 +83,8 @@
                         <label class="col-md-4 control-label">Sale Price</label>
                         <div class="col-md-4">
                             <input name="salePrice" id="" class="form-control input-md" type="text"
-                                placeholder="Sale Price" wire:model="sale_price">
-                            @error('sale_price') <span class='text-danger'>{{ $message }}</span>
+                                   placeholder="Sale Price" wire:model="sale_price">
+                            @error('sale_price') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -83,9 +92,10 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">SKU</label>
                         <div class="col-md-4">
+                            {{-- <span class="input-group-text" id="basic-addon1">@</span> --}}
                             <input type="text" name="sku" id="sku" class="form-control input-md" placeholder="SKU"
-                                wire:model="SKU">
-                            @error('SKU') <span class='text-danger'>{{ $message }}</span>
+                                   wire:model="SKU" aria-describedby="basic-addon">
+                            @error('SKU') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -114,8 +124,8 @@
                         <label for="" class="col-md-4 control-label">Quantity</label>
                         <div class="col-md-4">
                             <input type="text" name="quantity" id="quantity" class="form-control input-md"
-                                placeholder="Quantity" wire:model="quantity">
-                            @error('quantity') <span class='text-danger'>{{ $message }}</span>
+                                   placeholder="Quantity" wire:model="quantity">
+                            @error('quantity') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -124,16 +134,16 @@
                         <label class="col-md-4 control-label">Product Image</label>
                         <div class="col-md-4">
                             <input type="file" name="image" id="image" class="input-file" wire:model="image">
-                            @error('image') <span class='text-danger'>{{ $message }}</span>
+                            @error('image') <span class='error'>{{ $message }}</span>
                             @enderror
                             @if ($image)
-                            <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
-                                class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
-                                alt="" style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                                <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
+                                     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
+                                     alt="" style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
                             @else
-                            <div class="image-preview">
-                                <span>Preview Image</span>
-                            </div>
+                                <div class="image-preview">
+                                    <span>Preview Image</span>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -144,10 +154,10 @@
                             <select class="form-control" name="category" id="category" wire:model="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
-                            @error('category_id') <span class='text-danger'>{{ $message }}</span>
+                            @error('category_id') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -158,7 +168,6 @@
                             <button type="submit" id="form-submit" class="btn btn-primary col-md-4">Submit</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -168,89 +177,49 @@
 
 
 @push('scripts')
-<script>
-    $(document).ready(function () {
-        $('#form-submit').valid({
-            errorPlacement: function (error, element) {
-                element.parent("input").next("input").html(error);
-            },
-            success: function (label) {
-                label.removeClass("error").addClass("ok");
-            },
-            rules: {
-                productName: {
-                    required: true,
-                },
+    <script>
+        $(`#form-submit`).click((e) => {
+            let regularprice = document.getElementById('regularPrice').value;
+            let productname = document.getElementById('productname').value;
+            let description = document.getElementById('description').value;
+            let sku = document.getElementById('sku').value;
+            if (regularprice === '' || productname === '' || description === '' || sku === '') {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
 
-                productSlug: {
-                    required: true,
-                },
+                })
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Error creating the product'
+                })
+                e.preventDefault();
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
 
-                shortDescription: {
-                    required: true,
-                },
-
-                description: {
-                    required: true,
-                },
-
-                regularPrice: {
-                    required: true,
-                },
-
-                sku: {
-                    required: true,
-                },
-
-                stock: {
-                    required: true,
-                },
-
-                featured: {
-                    required: true,
-                },
-
-                quantity: {
-                    required: true,
-                },
-
-                image: {
-                    required: true,
-                },
-
-                category: {
-                    required: true,
-                }
-            },
-            // messages: {
-            // productName: {
-            // required: 'You need to type the title',
-            // },
-            // },
-            // submitHandler: function (form) {
-            //     form.submit();
-            // }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Product has bee created successfully'
+                })
+            }
         });
-        $(`#form-submit`).click(() => {
-            const Toast = Swal.mixin({
-                toast: true,
-                customClass: 'swal-height',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
 
-            })
-            Toast.fire({
-                icon: 'success',
-                title: 'Product has bee created successfully'
-            })
-        });
-    });
-
-</script>
+    </script>
 @endpush
