@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\AdminSaleComponent;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
@@ -80,5 +81,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
         Route::get('slider/edit/{slide_id}', AdminEditHomeSliderComponent::class)->name('admin.slider.edit');
 
         Route::get('home-categories', AdminHomeCategoryComponent::class)->name('admin.add.categories.home');
+
+        Route::get('sale', AdminSaleComponent::class)->name('admin.sale');
     }
 );

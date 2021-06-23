@@ -55,7 +55,9 @@
                                     <td>
                                         <a href="{{route('admin.products.edit', ['product_slug' => $product->slug])}}"><i
                                                 class="fa fa-edit fa-2x"></i></a>
-                                        <a href="#" wire:click.prevent="deleteProduct({{$product->id}})"><i
+                                        <a href="#"
+                                           onclick="confirm('Are you sure, You wnt to delete this product?') || event.stopImmediatePropagation()"
+                                           wire:click.prevent="deleteProduct({{$product->id}})"><i
                                                 class="fa fa-times fa-2x text-danger" style="margin-left: 10px"></i></a>
                                     </td>
                                 </tr>

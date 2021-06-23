@@ -16,14 +16,15 @@
             </div>
             <div class="panel-body">
                 @if (Session::has('message'))
-                <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
+                    <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
                 @endif
                 <form class="form-horizontal g-3" wire:submit.prevent="storeCategory">
                     <div class="form-group">
                         <label class="col-md-4 control-label">Catgeory Name</label>
                         <div class="col-md-4">
                             <input name="" id="" class="form-control input-md" type="text" placeholder="Category Name"
-                                wire:model="name">
+                                   wire:model="name">
+                            @error('name') <p class="text-danger">{{$message}}</p> @enderror
                         </div>
                     </div>
 
@@ -31,7 +32,9 @@
                         <label class="col-md-4 control-label">Catgeory slug</label>
                         <div class="col-md-4">
                             <input name="" id="" class="form-control input-md" type="text" placeholder="Category Slug"
-                                wire:model="slug" wire:keyup="generateSlug">
+                                   wire:model="slug" wire:keyup="generateSlug">
+                            @error('slug') <p class="text-danger">{{$message}}</p> @enderror
+
                         </div>
                     </div>
 
