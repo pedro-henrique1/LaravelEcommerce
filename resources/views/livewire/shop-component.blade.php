@@ -44,9 +44,39 @@
                             <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
                         </div>
                     </div>
-                </div><!--end wrap shop control-->
+                </div>
+                <!--end wrap shop control-->
+                <style>
+                    .product-wish {
+                        position: absolute;
+                        top: 10%;
+                        left: 0;
+                        z-index: 99;
+                        right: 30px;
+                        text-align: right;
+                        padding-top: 0;
+                    }
+
+                    .product-wish .fa {
+                        color: #cbcbcb;
+                        font-size: 32px;
+                    }
+
+                    .product-wish .fa:hover {
+                        transition: .5s ease-out;
+                        color: #CE1212;
+                    }
+
+                    .fill-heart {
+                        color: #CE1212 !important;
+                    }
+
+                </style>
                 <div class="row">
                     <ul class="product-list grid-products equal-container">
+                        @php
+                            $witems = Cart::instance('wishlist')->content()->pluck('id');
+                        @endphp
                         @foreach($products as $product)
                             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                                 <div class="product product-style-3 equal-elem ">
@@ -67,6 +97,15 @@
                                            title="{{$product->name}}" class="btn add-to-cart"
                                            wire:click.prevent="store({{$product->id}},  '{{$product->name}}', {{$product->regular_price}})">Add
                                             To Cart</a>
+                                        <div class="product-wish">
+                                            @if($witems->contains($product->id))
+                                                <a href=""><i class="fa fa-heart fill-heart"></i></a>
+                                            @else
+                                                <a href="#"
+                                                   wire:click.prevent="addToWishList({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"><i
+                                                        class="fa fa-heart"></i></a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -83,7 +122,8 @@
                     </ul> -->
                     <!-- <p class="result-count">Showing 1-8 of 12 result</p> -->
                 </div>
-            </div><!--end main products area-->
+            </div>
+            <!--end main products area-->
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
                 <div class="widget mercado-widget categories-widget">
                     <h2 class="widget-title">All Categories</h2>
@@ -190,7 +230,7 @@
 </main>
 @push('scripts')
     <script>
-        let slider = document.getElementById('slider');
+        let slider = $('#slider');
         noUiSlider.create(slider, {
             start: [1, 1000],
             connect: true,
@@ -208,5 +248,6 @@
         @this.set('min_price', value[0]);
         @this.set('max_price', value[1]);
         })
+
     </script>
 @endpush

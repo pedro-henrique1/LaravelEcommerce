@@ -49,7 +49,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Short Description</label>
-                        <div class="col-md-4">
+                        <div class="col-md-4" wire:ignore>
                             <textarea class="form-control" name="shortDescription" id="shortDescription"
                                       placeholder="Short Description" rows="5"
                                       wire:model="short_description"></textarea>
@@ -60,7 +60,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">Description</label>
-                        <div class="col-md-4">
+                        <div class="col-md-4" wire:ignore>
                             <textarea class="form-control" name="description" id="description" placeholder="Description"
                                       rows="5" wire:model="description">
                             </textarea>
@@ -178,6 +178,32 @@
 
 @push('scripts')
     <script>
+        $(function () {
+            tinymce.init({
+                selector: '#shortDescription',
+                // plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinymcespellchecker ',
+                // toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+                setup: function (editor) {
+                    editor.on('Change', function (e) {
+                        tinyMCE.triggerSave();
+                        let sd_data = $('#shortDescription').val();
+                    @this.set('shortDescription', sd_data);
+                    })
+                }
+            });
+            tinymce.init({
+                selector: '#description',
+                setup: function (editor) {
+                    editor.on('Change', function (e) {
+                        tinyMCE.triggerSave();
+                        let d_data = $('#description').val();
+                    @this.set('description', d_data);
+                    })
+                }
+            });
+        })
+
+
         $(`#form-submit`).click((e) => {
             let regularprice = document.getElementById('regularPrice').value;
             let productname = document.getElementById('productname').value;
@@ -220,6 +246,7 @@
                 })
             }
         });
+
 
     </script>
 @endpush

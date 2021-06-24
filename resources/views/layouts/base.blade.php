@@ -28,9 +28,10 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
           integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css"
-          integrity="sha512-40vN6DdyQoxRJCw0klEUwZfTTlcwkOLKpP8K8125hy9iF4fi8gPpWZp60qKC6MYAFaond8yQds7cTMVU8eMbgA=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css"
+          integrity="sha512-8czuHxKbajKuQfbgBv5iwqftC1PbeLPmgVOYo8ZDlcOdi0OV18E+BbGQdqXs490kV9ZmJQTNupd0kvW8hokJlw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     @livewireStyles
 </head>
 
@@ -193,7 +194,9 @@
                                 <a href="#" class="link-direction">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                     <div class="left-info">
-                                        <span class="index">0 item</span>
+                                        @if(Cart::instance('wishlist')->count() > 0)
+                                            <span class="index">{{Cart::instance('wishlist')->count()}} item</span>
+                                        @endif
                                         <span class="title">Wishlist</span>
                                     </div>
                                 </a>
@@ -203,8 +206,8 @@
                                     <a href="{{route('product.cart')}}" class="link-direction">
                                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                         <div class="left-info">
-                                            @if(Cart::count() > 0)
-                                                <span class="index">{{Cart::count()}} items</span>
+                                            @if(Cart::instance('cart')->count() > 0)
+                                                <span class="index">{{Cart::instance('cart')->count()}} items</span>
                                             @endif
                                             <span class="title">CART</span>
                                         </div>
@@ -601,9 +604,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"
-        integrity="sha512-jWNpWAWx86B/GZV4Qsce63q5jxx/rpWnw812vh0RE+SBIo/mmepwOSQkY2eVQnMuE28pzUEO7ux0a5sJX91g8A=="
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"
+        integrity="sha512-0Z2o7qmtl7ixxWcEQxxTCT8mX4PsdffSGoVJ7A80zqt6DvdEHF800xrsSmKPkSoUaHtlIhkLAhCPb/tkf78SCA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.tiny.cloud/1/42v197tovchx9nor26m7h3os2x09t2qmi0jf2ed8zea2cc9h/tinymce/5/tinymce.min.js"
+        referrerpolicy="no-referrer"></script>
 @stack('scripts')
 @livewireScripts
 </body>

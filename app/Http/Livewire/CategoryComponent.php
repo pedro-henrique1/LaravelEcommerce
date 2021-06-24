@@ -59,12 +59,7 @@ class CategoryComponent extends Component
 
         return view(
             "livewire.category-component",
-            [
-                'products' => $products,
-                'popular_products' => $popular_products,
-                'category_name' => $category_name,
-                'categories' => $categories,
-            ]
+            compact('products', 'popular_products', 'category_name', 'categories')
         )->layout("layouts.base");
     }
 }
