@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Admin\AdminAddCouponComponent;
+use App\Http\Livewire\Admin\AdminCouponsComponent;
+use App\Http\Livewire\Admin\AdminEditCouponComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\WishlistComponent;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +70,8 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
         Route::get("dashboard", AdminDashboardComponent::class)->name(
             "admin.dashboard"
         );
+
+
         Route::get("categories", AdminCategoryComponent::class)->name(
             "admin.categories"
         );
@@ -74,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
         Route::get('admin/category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
             'admin.category.edit'
         );
+
+
         Route::get('products', AdminProductComponent::class)->name('admin.products');
         Route::get('products/add', AdminAddProductComponent::class)->name('admin.products.add');
         Route::get('products/edit/{product_slug}', AdminEditProductComponent::class)->name('admin.products.edit');
@@ -87,5 +94,9 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
         Route::get('home-categories', AdminHomeCategoryComponent::class)->name('admin.add.categories.home');
 
         Route::get('sale', AdminSaleComponent::class)->name('admin.sale');
+
+        Route::get('coupons', AdminCouponsComponent::class)->name('admin.coupons');
+        Route::get('coupons/add', AdminAddCouponComponent::class)->name('admin.coupons.add');
+        Route::get('coupons/edit/{coupon_id}', AdminEditCouponComponent::class)->name('admin.coupons.edit');
     }
 );

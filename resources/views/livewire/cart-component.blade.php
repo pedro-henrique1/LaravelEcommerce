@@ -30,8 +30,9 @@
                                     <a class="link-to-product"
                                        href="{{route('product.details', ['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
                                 </div>
-                                <div class="price-field produtc-price"><p
-                                        class="price">{{$item->model->regular_price}}</p></div>
+                                <div class="price-field produtc-price">
+                                    <p class="price">{{$item->model->regular_price}}</p>
+                                </div>
                                 <div class="quantity">
                                     <div class="quantity-input">
                                         <a class="btn btn-reduce" href="#"
@@ -41,8 +42,13 @@
                                         <a class="btn btn-increase" href="#"
                                            wire:click.prevent="increaseQuantity('{{$item->rowId}}')"></a>
                                     </div>
+                                    <p class="text-center"><a href="#"
+                                                              wire:click.prevent="switchToSaveForLater('{{$item->rowId}}')">Save
+                                            For Later</a></p>
                                 </div>
-                                <div class="price-field sub-total"><p class="price">{{$item->subtotal}}</p></div>
+                                <div class="price-field sub-total">
+                                    <p class="price">{{$item->subtotal}}</p>
+                                </div>
                                 <div class="delete">
                                     <a href="#" class="btn btn-delete" title=""
                                        wire:click.prevent="destroy('{{$item->rowId}}')">
@@ -70,17 +76,65 @@
                 </div>
                 <div class="checkout-info">
                     <label class="checkbox-field">
-                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
+                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have
+                            promo code</span>
                     </label>
                     <a class="btn btn-checkout" href="{{route('product.checkout')}}">Check out</a>
                     <a class="link-to-shop" href="{{route('shop')}}">Continue Shopping<i
-                            class="fa fa-arrow-circle-right"
-                            aria-hidden="true"></i></a>
+                            class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="update-clear">
                     <a class="btn btn-clear" href="#" wire:click.prevent="destroyAll()">Clear Shopping Cart</a>
                     <a class="btn btn-update" href="#">Update Shopping Cart</a>
                 </div>
+            </div>
+
+
+            {{-- save for later  --}}
+            <div class="wrap-iten-in-cart">
+                <p class="h3 title-box border-bottom" style="padding-bottom: 15px;">
+                    {{Cart::instance('saveForLater')->count()}}
+                    item(s) Saved For Later</p>
+                @if(Session::has('s_success_message'))
+                    <div class="alert alert-success">
+                        <strong>Success</strong> {{Session::get('s_success_message')}}
+                    </div>
+                @endif
+                @if(Cart::instance('saveForLater')->count() > 0)
+                    <h3 class="box-title">Products Name</h3>
+                    <ul class="products-cart">
+                        @foreach(Cart::instance('saveForLater')->content() as $item)
+                            <li class="pr-cart-item">
+                                <div class="product-image">
+                                    <figure><img src="{{asset('assets/images/products')}}/{{$item->model->image}}"
+                                                 alt="{{$item->model->name}}">
+                                    </figure>
+                                </div>
+                                <div class="product-name">
+                                    <a class="link-to-product"
+                                       href="{{route('product.details', ['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
+                                </div>
+                                <div class="price-field produtc-price">
+                                    <p class="price">{{$item->model->regular_price}}</p>
+                                </div>
+                                <div class="quantity">
+                                    <p class="text-center"><a href="#"
+                                                              wire:click.prevent="moveToCart('{{$item->rowId}}')">Move
+                                            To Cart</a></p>
+                                </div>
+                                <div class="delete">
+                                    <a href="#" class="btn btn-delete" title=""
+                                       wire:click.prevent="deleteFromSaveForLater('{{$item->rowId}}')">
+                                        <span>Delete from save for later</span>
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No item saved for later</p>
+                @endif
             </div>
 
             <div class="wrap-show-advance-info-box style-1 box-in-site">
@@ -104,7 +158,8 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price"><span class="product-price">$250.00</span></div>
                             </div>
                         </div>
@@ -124,10 +179,15 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price">
-                                    <ins><p class="product-price">$168.00</p></ins>
-                                    <del><p class="product-price">$250.00</p></del>
+                                    <ins>
+                                        <p class="product-price">$168.00</p>
+                                    </ins>
+                                    <del>
+                                        <p class="product-price">$250.00</p>
+                                    </del>
                                 </div>
                             </div>
                         </div>
@@ -148,10 +208,15 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price">
-                                    <ins><p class="product-price">$168.00</p></ins>
-                                    <del><p class="product-price">$250.00</p></del>
+                                    <ins>
+                                        <p class="product-price">$168.00</p>
+                                    </ins>
+                                    <del>
+                                        <p class="product-price">$250.00</p>
+                                    </del>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +236,8 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price"><span class="product-price">$250.00</span></div>
                             </div>
                         </div>
@@ -188,7 +254,8 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price"><span class="product-price">$250.00</span></div>
                             </div>
                         </div>
@@ -208,10 +275,15 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price">
-                                    <ins><p class="product-price">$168.00</p></ins>
-                                    <del><p class="product-price">$250.00</p></del>
+                                    <ins>
+                                        <p class="product-price">$168.00</p>
+                                    </ins>
+                                    <del>
+                                        <p class="product-price">$250.00</p>
+                                    </del>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +303,8 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price"><span class="product-price">$250.00</span></div>
                             </div>
                         </div>
@@ -251,15 +324,19 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker
+                                        [White]</span></a>
                                 <div class="wrap-price"><span class="product-price">$250.00</span></div>
                             </div>
                         </div>
                     </div>
-                </div><!--End wrap-products-->
+                </div>
+                <!--End wrap-products-->
             </div>
 
-        </div><!--end main content area-->
-    </div><!--end container-->
+        </div>
+        <!--end main content area-->
+    </div>
+    <!--end container-->
 
 </main>
