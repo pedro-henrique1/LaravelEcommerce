@@ -8,6 +8,7 @@
                 <li class="item-link"><span>Cart</span></li>
             </ul>
         </div>
+
         <div class=" main-content-area">
 
             <div class="wrap-iten-in-cart">
@@ -59,9 +60,9 @@
                             </li>
                         @endforeach
                     </ul>
-                @else
-                    <p>No item in cart</p>
-                @endif
+                    @else
+                        <p>No item in cart</p>
+                    @endif
             </div>
 
             <div class="summary">
@@ -69,24 +70,57 @@
                     <h4 class="title-box">Order Summary</h4>
                     <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{Cart::subtotal()}}</b>
                     </p>
-                    <p class="summary-info"><span class="title">Tax</span><b class="index">{{Cart::tax()}}</b></p>
-                    <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Total</span><b
-                            class="index">{{Cart::total()}}</b></p>
+                    @if(Session::has('coupon'))
+                        <p class="summary-info"><span class="title">Discount ({{Session::get('coupon')['code']}})</span><b
+                                class="index">${{$discount}}</b></p>
+                        <p class="summary-info"><span class="title">Sub with Discount</span><b
+                                class="index">${{$subtotalAfterDiscount}}</b></p>
+                        <p class="summary-info"><span class="title">Tax ({{config('cart.tax')}}%)
+                            ({{Session::get('coupon')['code']}})</span><b class="index">${{$taxAfterDiscount}}</b></p>
+                        <p class="summary-info"><span class="title">Total</span><b
+                                class="index">${{$totalAfterDiscount}}</b></p>
+                    @else
+                        <p class="summary-info"><span class="title">Tax</span><b class="index">{{Cart::tax()}}</b></p>
+                        <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b>
+                        </p>
+                        <p class="summary-info total-info "><span class="title">Total</span><b
+                                class="index">{{Cart::total()}}</b></p>
+                    @endif
                 </div>
-                <div class="checkout-info">
-                    <label class="checkbox-field">
-                        <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have
+                @if(!Session::has('coupon'))
+                    <div class="checkout-info">
+                        <label class="checkbox-field">
+                            <input class="frm-input " name="have-code" id="have-code" value="1"
+                                   wire:model="haveCouponCode"
+                                   type="checkbox"><span>I have
                             promo code</span>
-                    </label>
-                    <a class="btn btn-checkout" href="{{route('product.checkout')}}">Check out</a>
-                    <a class="link-to-shop" href="{{route('shop')}}">Continue Shopping<i
-                            class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                </div>
-                <div class="update-clear">
-                    <a class="btn btn-clear" href="#" wire:click.prevent="destroyAll()">Clear Shopping Cart</a>
-                    <a class="btn btn-update" href="#">Update Shopping Cart</a>
-                </div>
+                        </label>
+                        @if($haveCouponCode == 1)
+                            <div class="summary-item">
+                                <form wire:submit.prevent="applyCouponCode">
+                                    <h4 class="title-box">Coupon Code</h4>
+                                    @if(Session::has('coupon_message'))
+                                        <div class="alert alert-danger"
+                                             role="danger">{{Session::get('coupon_message')}}</div>
+                                    @endif
+                                    <p class="row-in-form">
+                                        <label for="coupon-code">Enter Your coupon code:</label>
+                                        <input type="text" name="coupon-code" wire:model="couponCode"/>
+                                    </p>
+                                    <button type="submit" class="btn btn-small">Apply</button>
+                                </form>
+                            </div>
+                        @endif
+                        @endif
+
+                        <a class="btn btn-checkout" href="{{route('product.checkout')}}">Check out</a>
+                        <a class="link-to-shop" href="{{route('shop')}}">Continue Shopping<i
+                                class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="update-clear">
+                        <a class="btn btn-clear" href="#" wire:click.prevent="destroyAll()">Clear Shopping Cart</a>
+                        <a class="btn btn-update" href="#">Update Shopping Cart</a>
+                    </div>
             </div>
 
 
