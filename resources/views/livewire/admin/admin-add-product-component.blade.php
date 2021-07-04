@@ -25,7 +25,7 @@
             <div class="panel-body" style="border: 2px solid #ccc">
                 <form class="form-horizontal g-3" method="POST" enctype="multipart/form-data"
                       wire:submit.prevent="addProduct">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Name</label>
