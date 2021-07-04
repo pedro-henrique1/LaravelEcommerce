@@ -8,17 +8,11 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/pedro-henrique1/LaravelEcommerce?color=56BEB8">
 
   <img alt="License" src="https://img.shields.io/github/license/pedro-henrique1/LaravelEcommerce?color=56BEB8">
-
-  <img alt="Github issues" src="https://img.shields.io/github/issues/pedro-henrique1/LaravelEcommerce?color=56BEB8" />
-  <img alt="Github forks" src="https://img.shields.io/github/forks/pedro-henrique1/LaravelEcommerce?color=56BEB8" />
-  <img alt="Github stars" src="https://img.shields.io/github/stars/pedro-henrique1/LaravelEcommerce?color=56BEB8" />
 </p>
-<br>
 <br>
 <br>
 <h1>Sobre</h1>
 <p style="font-size:15px">Este projeto foi criado com intuito de aprimorar minhas habilidades com laravel e php</p>
-<br>
 <br>
 <br>
 <h1>Tecnologias usadas </h1>
@@ -29,7 +23,6 @@
 
 <br>
 <br>
-<br>
 
 # Requisitos
 
@@ -38,7 +31,6 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/) ou
 [Php Storm](https://www.jetbrains.com/phpstorm/).
 
-<br>
 <br>
 <br>
 
