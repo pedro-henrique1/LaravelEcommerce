@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Livewire\Admin\AdminAddCouponComponent;
+use App\Http\Livewire\Admin\AdminCouponsComponent;
+use App\Http\Livewire\Admin\AdminEditCouponComponent;
+use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\WishlistComponent;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
@@ -47,6 +52,9 @@ Route::get("/product/{slug}", DetailsComponent::class)->name('product.details');
 Route::get("/product-category/{category_slug}", CategoryComponent::class)->name('product.category');
 Route::get('/search', SearchComponent::class)->name('product.search');
 
+Route::get('wishlist', WishlistComponent::class)->name('product.wishlist');
+
+
 Route::middleware(["auth:sanctum", "verified"])->prefix('user')->group(
     function () {
         Route::get("/dashboard", UserDashboardComponent::class)->name(
@@ -56,12 +64,14 @@ Route::middleware(["auth:sanctum", "verified"])->prefix('user')->group(
 );
 
 //['auth:sanctum', 'verified']
-//["auth:sanctum", "verified", "authadmin"]
-Route::middleware(['auth:sanctum', 'verified'])->prefix('admin/')->group(
+//["auth:sanctum", "verified", ""]
+Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->group(
     function () {
         Route::get("dashboard", AdminDashboardComponent::class)->name(
             "admin.dashboard"
         );
+
+
         Route::get("categories", AdminCategoryComponent::class)->name(
             "admin.categories"
         );
@@ -69,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin/')->group(
         Route::get('admin/category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
             'admin.category.edit'
         );
+
+
         Route::get('products', AdminProductComponent::class)->name('admin.products');
         Route::get('products/add', AdminAddProductComponent::class)->name('admin.products.add');
         Route::get('products/edit/{product_slug}', AdminEditProductComponent::class)->name('admin.products.edit');
@@ -80,5 +92,11 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin/')->group(
         Route::get('slider/edit/{slide_id}', AdminEditHomeSliderComponent::class)->name('admin.slider.edit');
 
         Route::get('home-categories', AdminHomeCategoryComponent::class)->name('admin.add.categories.home');
+
+        Route::get('sale', AdminSaleComponent::class)->name('admin.sale');
+
+        Route::get('coupons', AdminCouponsComponent::class)->name('admin.coupons');
+        Route::get('coupons/add', AdminAddCouponComponent::class)->name('admin.coupons.add');
+        Route::get('coupons/edit/{coupon_id}', AdminEditCouponComponent::class)->name('admin.coupons.edit');
     }
 );

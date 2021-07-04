@@ -18,6 +18,6 @@ class AdminHomeSliderComponent extends Component
     public function render()
     {
         $sliders = HomeSlide::all();
-        return view('livewire.admin.admin-home-slider-component', ['sliders' => $sliders])->layout('layouts.base');
+        return view('livewire.admin.admin-home-slider-component', compact('sliders'))->layout('layouts.base');
     }
 }

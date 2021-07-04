@@ -753,7 +753,7 @@ header.fill-color
     font-size: 12px;
     line-height: 12px;
     display: block;
-    background: #888;
+    background: #ff2832;
     padding: 1.5px 7px;
     border-radius: 2px;
 }
@@ -5700,6 +5700,7 @@ table.shop_attributes tbody {
 .wrap-address-billing .row-in-form:nth-child(2n + 1) {
     margin-right: 30px;
 }
+/* estilo do alerta */
 
 .summary-checkout {
     background-color: #fdfdfd;

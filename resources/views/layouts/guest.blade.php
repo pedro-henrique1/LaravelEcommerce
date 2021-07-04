@@ -193,6 +193,7 @@
                         </div>
 
                         <div class="wrap-icon right-section">
+                            @if (Auth::check())
                             <div class="wrap-icon-section wishlist">
                                 <a href="#" class="link-direction">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
@@ -203,14 +204,19 @@
                                 </a>
                             </div>
                             <div class="wrap-icon-section minicart">
-                                <a href="#" class="link-direction">
+
+                                <a href="{{route('product.cart')}}" class="link-direction">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                     <div class="left-info">
-                                        <span class="index">4 items</span>
+                                        @if(Cart::count() > 0)
+                                        <span class="index">{{Cart::count()}} items</span>
+                                        @endif
                                         <span class="title">CART</span>
                                     </div>
                                 </a>
                             </div>
+                            @endif
+
                             <div class="wrap-icon-section show-up-after-1024">
                                 <a href="#" class="mobile-navigation">
                                     <span></span>
@@ -218,6 +224,7 @@
                                     <span></span>
                                 </a>
                             </div>
+
                         </div>
 
                     </div>
@@ -590,7 +597,7 @@
     <script src="{{asset('assets/js/jquery.countdown.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
     <script src="{{asset('assets/js/functions.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     @livewireScripts
 </body>
 

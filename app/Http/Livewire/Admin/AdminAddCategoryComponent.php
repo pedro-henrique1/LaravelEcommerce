@@ -16,15 +16,32 @@ class AdminAddCategoryComponent extends Component
         $this->slug = \Str::slug($this->name);
     }
 
+    public function updated($fields)
+    {
+        $this->validate(
+            [
+                'name' => 'required',
+                'slug' => 'required|unique:categories'
+            ]
+        );
+    }
+
     public function storeCategory()
     {
+        $this->validate(
+            [
+                'name' => 'required',
+                'slug' => 'required|unique:categories'
+            ]
+        );
         $category = new Category();
         $category->name = $this->name;
         $category->slug = $this->slug;
         $category->save();
-        session()->flash('message' ,'Category has been created successfully');
+        session()->flash('message', 'Category has been created successfully');
         redirect()->route('admin.categories');
     }
+
     public function render()
     {
         return view('livewire.admin.admin-add-component')->layout("layouts.base");
