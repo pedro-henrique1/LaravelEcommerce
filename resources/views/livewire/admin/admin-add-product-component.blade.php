@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Name</label>
                         <div class="col-md-4">
-                            <input name="productName" id="productname" class="form-control input-md" type="text"
+                            <input name="productName" id="productName" class="form-control input-md" type="text"
                                    placeholder="Product Name" wire:model="name" wire:keyup="generateSlug">
                             @error('name') <span class='error'>{{ $message }}</span>
                             @enderror
@@ -181,8 +181,6 @@
         $(function () {
             tinymce.init({
                 selector: '#shortDescription',
-                // plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinymcespellchecker ',
-                // toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
                 setup: function (editor) {
                     editor.on('Change', function (e) {
                         tinyMCE.triggerSave();
@@ -205,11 +203,11 @@
 
 
         $(`#form-submit`).click((e) => {
-            let regularprice = document.getElementById('regularPrice').value;
-            let productname = document.getElementById('productname').value;
+            let regularPrice = document.getElementById('regularPrice').value;
+            let productName = document.getElementById('productName').value;
             let description = document.getElementById('description').value;
             let sku = document.getElementById('sku').value;
-            if (regularprice === '' || productname === '' || description === '' || sku === '') {
+            if (regularPrice === '' || productName === '' || description === '' || sku === '') {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
