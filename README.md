@@ -19,14 +19,11 @@
 
 ## :rocket: Tecnologias
 
-- Php
-- Laravel
-- Livewire
-- Mysql
-
+- **Php**
+- **Laravel**
+- **Livewire**
+- **Mysql**
 <br>
-<br>
-
 ## :white_check_mark: Requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -68,4 +65,4 @@ Feito com ❤️ de <a href="https://github.com/pedro-henrique1" target="_blank"
 
 [![LinkedIn](https://img.shields.io/badge/-LINKEDIN-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedro-henrique-silva-rodrigues-0544ab199/) [![instagram](https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pedro_henrique_dev/)
 
-[Link do projeto no youtube](https://www.youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)
+_[Link do projeto no youtube](https://www.youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)_
