@@ -10,12 +10,15 @@
   <img alt="License" src="https://img.shields.io/github/license/pedro-henrique1/LaravelEcommerce?color=56BEB8">
 </p>
 <br>
-<br>
-<h1>Sobre</h1>
+
+## :dart: Sobre
+
 <p style="font-size:15px">Este projeto foi criado com intuito de aprimorar minhas habilidades com laravel e php</p>
 <br>
 <br>
-<h1>Tecnologias usadas </h1>
+
+## :rocket: Tecnologias
+
 <h3><strong>Php</strong></h3>
 <h3><strong>Laravel</strong></h3>
 <h3><strong>Livewire</strong></h3>
@@ -24,7 +27,7 @@
 <br>
 <br>
 
-# Requisitos
+## :white_check_mark: Requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [php](https://www.php.net/), [laravel](https://laravel.com/docs/8.x) e do [Mysql](https://www.mysql.com/). <br>
@@ -34,7 +37,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 <br>
 <br>
 
-## Rodando a aplicação
+## :checkered_flag: Rodando a aplicação
 
 ```bash
 # Clone do projeto
@@ -54,13 +57,12 @@ $ php artisan serve
 
 <br>
 <br>
-<br>
 
-# License
+## :memo: Licença
 
 Este projeto está sob licença do MIT. Para obter mais detalhes, consulte [LICENSE](LICENSE.md).
 
-Feito com :heart: de <a href="https://github.com/pedro-henrique1" target="_blank">Pedro</a>
+Feito com ❤️ de <a href="https://github.com/pedro-henrique1" target="_blank">Pedro</a>
 
 &#xa0;
 
