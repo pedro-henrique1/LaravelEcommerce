@@ -19,10 +19,10 @@
 
 ## :rocket: Tecnologias
 
-<h3><strong>Php</strong></h3>
-<h3><strong>Laravel</strong></h3>
-<h3><strong>Livewire</strong></h3>
-<h3>Banco de dados <strong>Mysql</strong></h3>
+- Php
+- Laravel
+- Livewire
+- Mysql
 
 <br>
 <br>
