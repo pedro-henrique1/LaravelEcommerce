@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class AdminAddCategoryComponent extends Component
 {
@@ -13,7 +13,7 @@ class AdminAddCategoryComponent extends Component
 
     public function generateSlug()
     {
-        $this->slug = \Str::slug($this->name);
+        $this->slug = Str::slug($this->name);
     }
 
     public function updated($fields)

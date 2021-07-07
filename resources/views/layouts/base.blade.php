@@ -190,21 +190,20 @@
                                 src="{{asset('assets/images/logo-top-1.png')}}" alt="mercado"></a>
                     </div>
 
-                    <livewire:header-search-component>
-                        <div class="wrap-icon right-section">
-                            @if(Auth::check())
-                                <livewire:wishlist-count-component/>
-                                <livewire:cart-count-component/>
-                            @endif
-                            <div class="wrap-icon-section show-up-after-1024">
-                                <a href="#" class="mobile-navigation">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </a>
-                            </div>
+                    <livewire:header-search-component/>
+                    <div class="wrap-icon right-section">
+                        @if(Auth::check())
+                            <livewire:wishlist-count-component/>
+                            <livewire:cart-count-component/>
+                        @endif
+                        <div class="wrap-icon-section show-up-after-1024">
+                            <a href="#" class="mobile-navigation">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
                         </div>
-
+                    </div>
                 </div>
             </div>
 
