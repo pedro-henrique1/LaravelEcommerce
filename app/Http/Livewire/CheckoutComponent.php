@@ -25,7 +25,7 @@ class CheckoutComponent extends Component
     public $country;
     public $zipcode;
 
-
+    public $s_ship_to_different;
     public $s_firstName;
     public $s_lastName;
     public $s_email;
@@ -49,7 +49,7 @@ class CheckoutComponent extends Component
         $this->validateOnly(
             $fields,
             [
-                'ship_to_different' => 'required',
+//                'ship_to_different' => 'required',
                 'firstName' => 'required',
                 'lastName' => 'required',
                 'email' => 'required|email',
@@ -67,7 +67,6 @@ class CheckoutComponent extends Component
             $this->validateOnly(
                 $fields,
                 [
-                    's_ship_to_different' => 'required',
                     's_firstName' => 'required',
                     's_lastName' => 'required',
                     's_email' => 'required|email',
@@ -88,7 +87,6 @@ class CheckoutComponent extends Component
     {
         $this->validate(
             [
-                'ship_to_different' => 'required',
                 'firstName' => 'required',
                 'lastName' => 'required',
                 'email' => 'required|email',
@@ -100,28 +98,30 @@ class CheckoutComponent extends Component
                 'country' => 'required',
                 'zipcode' => 'required',
                 'paymentmode' => 'required'
-
             ]
         );
+        $subtotalFormate = str_replace(',', '', session()->get('checkout')['subtotal']);
+        $taxFormate = str_replace(',', '', session()->get('checkout')['tax']);
+        $totalFormate = str_replace(',', '', session()->get('checkout')['total']);
+
         $order = new Order();
         $order->user_id = Auth::user()->id;
-        $order->subtotal = session()->get('checkout')['subtotal'];
+        $order->subtotal = $subtotalFormate;
         $order->discount = session()->get('checkout')['discount'];
-        $order->tax = session()->get('checkout')['tax'];
-        $order->total = session()->get('checkout')['total'];
-        $order->ship_to_different = $this->ship_to_different;
-        $order->firstName = $this->firstName;
-        $order->lastName = $this->lastName;
+        $order->tax = $taxFormate;
+        $order->total = $totalFormate;
+        $order->firstname = $this->firstName;
+        $order->lastname = $this->lastName;
         $order->email = $this->email;
         $order->mobile = $this->mobile;
         $order->line1 = $this->line1;
         $order->line2 = $this->line2;
         $order->city = $this->city;
         $order->province = $this->province;
-        $order->country = $this->country;
+        $order->county = $this->country;
         $order->zipcode = $this->zipcode;
         $order->status = 'ordered';
-        $order->ship_to_different = $this->ship_to_different ? 1 : 0;
+        $order->is_shipping_different = $this->ship_to_different ? 1 : 0;
         $order->save();
 
         foreach (Cart::instance('cart')->content() as $item) {
@@ -134,10 +134,11 @@ class CheckoutComponent extends Component
         }
 
 
+//        dd($this->ship_to_different);
         if ($this->ship_to_different) {
             $this->validate(
                 [
-                    's_ship_to_different' => 'required',
+//                    's_ship_to_different' => 'required',
                     's_firstName' => 'required',
                     's_lastName' => 'required',
                     's_email' => 'required|email',
@@ -153,15 +154,15 @@ class CheckoutComponent extends Component
 
             $shipping = new Shipping();
             $shipping->order_id = $order->id;
-            $shipping->firstName = $this->s_firstName;
-            $shipping->lastName = $this->s_lastName;
-            $shipping->email = $this->s_email;
+            $shipping->firstname = $this->s_firstName;
+            $shipping->lastname = $this->s_lastName;
             $shipping->mobile = $this->s_mobile;
+            $shipping->email = $this->s_email;
             $shipping->line1 = $this->s_line1;
             $shipping->line2 = $this->s_line2;
             $shipping->city = $this->s_city;
             $shipping->province = $this->s_province;
-            $shipping->country = $this->s_country;
+            $shipping->county = $this->s_country;
             $shipping->zipcode = $this->s_zipcode;
             $shipping->save();
         }
@@ -187,6 +188,8 @@ class CheckoutComponent extends Component
             return redirect()->route('thanksYou');
         } elseif (!session()->get('checkout')) {
             return redirect()->route('product.cart');
+        } else {
+            return;
         }
     }
 

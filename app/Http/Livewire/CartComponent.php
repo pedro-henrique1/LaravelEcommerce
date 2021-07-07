@@ -96,9 +96,9 @@ class CartComponent extends Component
             return;
         }
 
-        session(
-            [
-                'coupon' => $coupon,
+        session()->put(
+            'coupon',
+            [//                 => $coupon,
                 'code' => $coupon->code,
                 'type' => $coupon->type,
                 'value' => $coupon->value,
