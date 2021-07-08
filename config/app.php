@@ -1,5 +1,7 @@
 <?php
 
+use Gloudemans\Shoppingcart\ShoppingcartServiceProvider;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +40,7 @@ return [
     |
      */
 
-    "debug" => (bool) env("APP_DEBUG", false),
+    "debug" => (bool)env("APP_DEBUG", false),
 
     /*
     |--------------------------------------------------------------------------
@@ -160,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        \Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        ShoppingcartServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
@@ -177,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
     ],
 
     /*
@@ -230,5 +233,6 @@ return [
         "View" => Illuminate\Support\Facades\View::class,
         "Cart" => \Gloudemans\Shoppingcart\Facades\Cart::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
     ],
 ];

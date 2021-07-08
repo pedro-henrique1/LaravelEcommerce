@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExpiryDateToCouponsTable extends Migration
+class RenameColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddExpiryDateToCouponsTable extends Migration
     public function up()
     {
         Schema::table(
-            'coupons',
+            'orders',
             function (Blueprint $table) {
-                $table->date('expired_date')->default(now());
+                $table->renameColumn('county', 'country');
             }
         );
     }
@@ -29,9 +29,9 @@ class AddExpiryDateToCouponsTable extends Migration
     public function down()
     {
         Schema::table(
-            'coupons',
+            'orders',
             function (Blueprint $table) {
-                $table->date('expire_date')->default(now());
+                $table->renameColumn('country', 'county');
             }
         );
     }

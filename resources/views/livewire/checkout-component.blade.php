@@ -1,4 +1,16 @@
 <main id="main" class="main-site">
+    <style>
+        .summary-item .row-in-form input[type="password"], .summary-item .row-in-form input[type="text"], .summary-item .row-in-form input[type="tel"] {
+            font-size: 13px;
+            line-height: 19px;
+            display: inline-block;
+            height: 43px;
+            padding: 2px 20px;
+            max-width: 300px;
+            width: 100%;
+            border: 1px solid #e6e6e6;
+        }
+    </style>
     <div class="container">
         <div class="wrap-breadcrumb">
             <ul>
@@ -24,7 +36,6 @@
                                     <input type="text" name="lname" value="" placeholder="Your last name"
                                            wire:model="lastName">
                                     @error('lastName') <span class="text-danger">{{$message}}</span> @enderror
-
                                 </p>
                                 <p class="row-in-form">
                                     <label for="email">Email Addreess:</label>
@@ -164,8 +175,40 @@
                 <div class="summary summary-checkout">
                     <div class="summary-item payment-method">
                         <h4 class="title-box">Payment Method</h4>
-                        <p class="summary-info"><span class="title">Check / Money order</span></p>
-                        <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
+                        @if($paymentmode == 'card')
+                            <div class="wrap-address-billing">
+                                @if(Session::has('stripe_error'))
+                                    <div class="alert alert-danger" role="alert">{{Session::has('stripe_error')}}</div>
+                                @endif
+                                <p class="row-in-form">
+                                    <label for="card-no">Cart Number:</label>
+                                    <input type="text" name="card-no" value="" placeholder="Card number"
+                                           wire:model="card_no">
+                                    @error('card_no') <span class="text-danger">{{$message}}</span> @enderror
+                                </p>
+
+                                <p class="row-in-form">
+                                    <label for="exp-month">Expiry Month:</label>
+                                    <input type="text" name="exp-month" value="" placeholder="MM"
+                                           wire:model="exp_month">
+                                    @error('exp_month') <span class="text-danger">{{$message}}</span> @enderror
+                                </p>
+
+                                <p class="row-in-form">
+                                    <label for="exp-year">Expiry year:</label>
+                                    <input type="text" name="exp_year" value="" placeholder="YYYY"
+                                           wire:model="exp_year">
+                                    @error('exp_year') <span class="text-danger">{{$message}}</span> @enderror
+                                </p>
+
+                                <p class="row-in-form">
+                                    <label for="cvc">Cvc:</label>
+                                    <input type="password" name="cvc" value="" placeholder="Cvc"
+                                           wire:model="cvc">
+                                    @error('cvc') <span class="text-danger">{{$message}}</span> @enderror
+                                </p>
+                            </div>
+                        @endif
                         <div class="choose-payment-methods">
                             <label class="payment-method">
                                 <input name="payment-method" id="payment-method-bank" value="cod" type="radio"
