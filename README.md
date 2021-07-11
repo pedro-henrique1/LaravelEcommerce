@@ -11,6 +11,15 @@
 </p>
 <br>
 
+# status
+
+<h4 align="center"> 
+<!-- Finalizado 🚀  || Ecommerce 🚀  -->
+	🚧  Em  construção...  🚧
+</h4>
+
+<br>
+ 
 ## :dart: Sobre
 
 <p style="font-size:15px">Este projeto foi criado com intuito de aprimorar minhas habilidades com laravel e php</p>
@@ -23,7 +32,8 @@
 - **Laravel**
 - **Livewire**
 - **Mysql**
-<br>
+  <br>
+
 ## :white_check_mark: Requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
