@@ -141,6 +141,9 @@
                                                     <a title="Coupons" href="{{route('admin.coupons')}}">Coupons</a>
                                                 </li>
                                                 <li class="menu-item">
+                                                    <a title="Orders" href="{{route('admin.orders')}}">Orders</a>
+                                                </li>
+                                                <li class="menu-item">
                                                     <a href="{{route('logout')}}"
                                                        onclick="event.preventDefault(); document.querySelector('#logout-form').submit();">Logout</a>
                                                 </li>
