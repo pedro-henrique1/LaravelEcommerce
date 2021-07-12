@@ -20,6 +20,7 @@
         </div>
         <div class=" main-content-area">
             <form wire:submit.prevent="placeOrder">
+                @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="wrap-address-billing">
@@ -171,7 +172,6 @@
                         </div>
                     @endif
                 </div>
-
                 <div class="summary summary-checkout">
                     <div class="summary-item payment-method">
                         <h4 class="title-box">Payment Method</h4>
@@ -182,7 +182,7 @@
                                 @endif
                                 <p class="row-in-form">
                                     <label for="card-no">Cart Number:</label>
-                                    <input type="text" name="card-no" value="" placeholder="Card number"
+                                    <input type="text" name="card-on" value="" placeholder="Card number"
                                            wire:model="card_no">
                                     @error('card_no') <span class="text-danger">{{$message}}</span> @enderror
                                 </p>

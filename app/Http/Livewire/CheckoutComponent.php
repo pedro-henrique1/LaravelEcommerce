@@ -10,7 +10,6 @@ use Cart;
 use Cartalyst\Stripe\Stripe;
 use Exception;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 
@@ -49,15 +48,12 @@ class CheckoutComponent extends Component
     public $exp_year;
     public $cvc;
 
-    /**
-     * @throws ValidationException
-     */
+
     public function updated($fields)
     {
         $this->validateOnly(
             $fields,
             [
-//                'ship_to_different' => 'required',
                 'firstName' => 'required',
                 'lastName' => 'required',
                 'email' => 'required|email',
@@ -90,10 +86,11 @@ class CheckoutComponent extends Component
             );
         }
         if ($this->paymentmode == 'card') {
+//            dd($this->paymentmode == 'card');
             $this->validateOnly(
                 $fields,
                 [
-                    'card_on' => 'required|numeric',
+                    'card_no' => 'required|numeric',
                     'exp_month' => 'required|numeric',
                     'exp_year' => 'required|numeric',
                     'cvc' => 'required|numeric'
@@ -123,7 +120,7 @@ class CheckoutComponent extends Component
         if ($this->paymentmode == 'card') {
             $this->validate(
                 [
-                    'card_on' => 'required|numeric',
+                    'card_no' => 'required|numeric',
                     'exp_month' => 'required|numeric',
                     'exp_year' => 'required|numeric',
                     'cvc' => 'required|numeric'
@@ -164,12 +161,9 @@ class CheckoutComponent extends Component
             $orderItem->save();
         }
 
-
-//        dd($this->ship_to_different);
         if ($this->ship_to_different) {
             $this->validate(
                 [
-//                    's_ship_to_different' => 'required',
                     's_firstName' => 'required',
                     's_lastName' => 'required',
                     's_email' => 'required|email',
@@ -202,24 +196,25 @@ class CheckoutComponent extends Component
             $this->makeTransaction($order->id, 'pending');
             $this->resetCart();
         } elseif ($this->paymentmode == 'card') {
-            $stripe = Stripe::make(env('stripe_key'));
-
+            $stripe = Stripe::make(env('STRIPE_KEY'));
             try {
-                $token = $stripe->token()->create(
+                $token = $stripe->tokens()->create(
                     [
                         'card' => [
                             'number' => $this->card_no,
                             'exp_month' => $this->exp_month,
+                            'cvc' => $this->cvc,
                             'exp_year' => $this->exp_year,
-                            'cvc' => $this->cvc
                         ]
                     ]
                 );
+
                 if (!isset($token['id'])) {
                     session()->flash('stripe_error', 'The stripe token was not generated correctly!');
+                    $this->tanksyou = 0;
                 }
 
-                $customer = $stripe->customers()->created(
+                $customer = $stripe->customers()->create(
                     [
                         'name' => $this->firstName . ' ' . $this->lastName,
                         'email' => $this->email,
@@ -244,7 +239,7 @@ class CheckoutComponent extends Component
                         'source' => $token['id']
                     ]
                 );
-                $change = $stripe->changes()->created(
+                $change = $stripe->charges()->create(
                     [
                         'customer' => $customer['id'],
                         'currency' => 'USD',
@@ -252,11 +247,11 @@ class CheckoutComponent extends Component
                         'description' => 'Payment for order no ' . $order->id
                     ]
                 );
-                if ($change['status'] == 'succeed') {
+                if ($change['status'] == 'succeeded') {
                     $this->makeTransaction($order->id, 'approved');
                     $this->resetCart();
                 } else {
-                    session()->flash('striper_error', 'Error in Transaction!');
+                    session()->flash('stripe_error', 'Error in Transaction!');
                     $this->tanksyou = 0;
                 }
             } catch (Exception $e) {
@@ -283,8 +278,7 @@ class CheckoutComponent extends Component
         $transaction->save();
     }
 
-    public
-    function verifyForCheckout()
+    public function verifyForCheckout()
     {
         if (!Auth::check()) {
             return redirect()->route('login');
@@ -297,8 +291,7 @@ class CheckoutComponent extends Component
         }
     }
 
-    public
-    function render()
+    public function render()
     {
         $this->verifyForCheckout();
         return view('livewire.checkout-component')->layout('layouts.base');

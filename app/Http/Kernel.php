@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
 {
 
     protected $middleware = [
-//      TrustHosts::class,
+        //      TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,
@@ -50,7 +50,7 @@ class Kernel extends HttpKernel
             StartSession::class,
             AuthenticateSession::class,
             ShareErrorsFromSession::class,
-//          VerifyCsrfToken::class,
+            //          VerifyCsrfToken::class,
             SubstituteBindings::class,
             HandleCors::class,
 

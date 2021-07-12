@@ -30,6 +30,7 @@ class ProductFactory extends Factory
             "short_description" => $this->faker->text(400),
             "description" => $this->faker->text(500),
             "regular_price" => $this->faker->numberBetween(10, 500),
+            "sale_price" => $this->faker->numberBetween(1, 100),
             "SKU" => "DIGI" . $this->faker->numberBetween(100, 500),
             "stock_status" => "instock",
             "quantify" => $this->faker->numberBetween(100, 200),
