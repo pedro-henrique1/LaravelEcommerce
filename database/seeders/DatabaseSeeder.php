@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\HomeCategory;
 use App\Models\Product;
+use App\Models\Sale;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +21,7 @@ class DatabaseSeeder extends Seeder
         Category::factory(6)->create();
         Product::factory(6)->create();
         User::factory(1)->create();
+        HomeCategory::factory(5)->create();
+        Sale::factory(1)->create();
     }
 }

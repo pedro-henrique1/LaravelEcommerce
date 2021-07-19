@@ -15715,7 +15715,7 @@
 
     namespace RealRashid\SweetAlert\Facades {
 
-        use RealRashid\SweetAlert\;
+        use;
         use RealRashid\SweetAlert\Toaster;
 
         /**
