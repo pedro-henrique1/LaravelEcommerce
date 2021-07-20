@@ -9,6 +9,9 @@
                             <div class="col-md-6">
                                 Ordered Items
                             </div>
+                            <div class="col-md-6">
+                                <a href="{{route('admin.orders')}}" class="btn btn-success pull-right">My Orders</a>
+                            </div>
                         </div>
                     </div>
                     <div class='panel-body'>
