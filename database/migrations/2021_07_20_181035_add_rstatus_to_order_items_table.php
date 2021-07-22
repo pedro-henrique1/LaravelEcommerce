@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeliveredCancelesDateToOrdersTable extends Migration
+class AddRstatusToOrderItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class AddDeliveredCancelesDateToOrdersTable extends Migration
     public function up()
     {
         Schema::table(
-            'orders',
+            'order_items',
             function (Blueprint $table) {
-                $table->date('delivered_date')->nullable();
-                $table->date('canceled_date')->nullable();
+                $table->boolean('rstatus')->default(false);
             }
         );
     }
@@ -30,10 +29,9 @@ class AddDeliveredCancelesDateToOrdersTable extends Migration
     public function down()
     {
         Schema::table(
-            'orders',
+            'order_items',
             function (Blueprint $table) {
-                $table->dropColumn('delivered_date');
-                $table->dropColumn('canceled_date');
+                $table->dropColumn('rstatus');
             }
         );
     }
