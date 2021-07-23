@@ -17,10 +17,10 @@ class CreateOrderItemsTable extends Migration
             'order_items',
             function (Blueprint $table) {
                 $table->id()->unique();
-                $table->integer('product_id')->unsigned();
-                $table->integer('order_id')->unsigned();
+                $table->bigInteger('product_id')->unsigned();
+                $table->bigInteger('order_id')->unsigned();
                 $table->decimal('price');
-                $table->integer('quantity');
+                $table->bigInteger('quantity');
                 $table->timestamps();
                 $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
                 $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

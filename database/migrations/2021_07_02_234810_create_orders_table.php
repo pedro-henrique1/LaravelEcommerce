@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             'orders',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('user_id')->unsigned();
+                $table->bigInteger('user_id')->unsigned();
                 $table->decimal('subtotal');
                 $table->decimal('discount')->default(0);
                 $table->decimal('tax');
