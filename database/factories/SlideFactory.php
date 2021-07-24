@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Sale;
+use App\Models\HomeSlide;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
+use Str;
 
-class SaleFactory extends Factory
+class SlideFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Sale::class;
+    protected $model = HomeSlide::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,11 @@ class SaleFactory extends Factory
     public function definition()
     {
         return [
-            'sale_date' => Carbon::now()->addWeek(2),
+            'title' => Str::random(10),
+            'subtitle' => Str::random(10),
+            'price' => random_int(10, 100),
+            'link' => ProductFactory::slug,
+            'image' => "1626628200.jpg",
             'status' => '1'
         ];
     }
