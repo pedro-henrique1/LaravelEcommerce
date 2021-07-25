@@ -27,7 +27,6 @@ class CheckoutComponent extends Component
     public $country;
     public $zipcode;
 
-    public $s_ship_to_different;
     public $s_firstName;
     public $s_lastName;
     public $s_email;
@@ -101,6 +100,10 @@ class CheckoutComponent extends Component
 
     public function placeOrder()
     {
+        $subtotalFormate = str_replace(',', '', session()->get('checkout')['subtotal']);
+        $taxFormate = str_replace(',', '', session()->get('checkout')['tax']);
+        $totalFormate = str_replace(',', '', session()->get('checkout')['total']);
+
         $this->validate(
             [
                 'firstName' => 'required',
@@ -128,9 +131,11 @@ class CheckoutComponent extends Component
             );
         }
 
-        $subtotalFormate = str_replace(',', '', session()->get('checkout')['subtotal']);
-        $taxFormate = str_replace(',', '', session()->get('checkout')['tax']);
-        $totalFormate = str_replace(',', '', session()->get('checkout')['total']);
+
+        if ($subtotalFormate && $taxFormate && $totalFormate == '') {
+            session()->flash('session_error', 'Error!');
+            exit(300);
+        }
 
         $order = new Order();
         $order->user_id = Auth::user()->id;
@@ -243,7 +248,8 @@ class CheckoutComponent extends Component
                     [
                         'customer' => $customer['id'],
                         'currency' => 'USD',
-                        'amount' => session()->get('checkout')['total'],
+                        //? session()->get('checkout')['total']
+                        'amount' => $totalFormate,
                         'description' => 'Payment for order no ' . $order->id
                     ]
                 );
