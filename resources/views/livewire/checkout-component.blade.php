@@ -1,6 +1,8 @@
 <main id="main" class="main-site">
     <style>
-        .summary-item .row-in-form input[type="password"], .summary-item .row-in-form input[type="text"], .summary-item .row-in-form input[type="tel"] {
+        .summary-item .row-in-form input[type="password"],
+        .summary-item .row-in-form input[type="text"],
+        .summary-item .row-in-form input[type="tel"] {
             font-size: 13px;
             line-height: 19px;
             display: inline-block;
@@ -10,8 +12,12 @@
             width: 100%;
             border: 1px solid #e6e6e6;
         }
+
     </style>
     <div class="container">
+        @if (Session::has('session_error'))
+            <div class='alert alert-danger' role='alert'>{{ Session::get('session_error') }}</div>
+        @endif
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="#" class="link">home</a></li>
@@ -178,7 +184,7 @@
                         @if($paymentmode == 'card')
                             <div class="wrap-address-billing">
                                 @if(Session::has('stripe_error'))
-                                    <div class="alert alert-danger" role="alert">{{Session::has('stripe_error')}}</div>
+                                    <div class="alert alert-danger" role="alert">{{Session::get('stripe_error')}}</div>
                                 @endif
                                 <p class="row-in-form">
                                     <label for="card-no">Cart Number:</label>
@@ -203,8 +209,7 @@
 
                                 <p class="row-in-form">
                                     <label for="cvc">Cvc:</label>
-                                    <input type="password" name="cvc" value="" placeholder="Cvc"
-                                           wire:model="cvc">
+                                    <input type="password" name="cvc" value="" placeholder="Cvc" wire:model="cvc">
                                     @error('cvc') <span class="text-danger">{{$message}}</span> @enderror
                                 </p>
                             </div>
@@ -220,8 +225,8 @@
                                 <input name="payment-method" id="payment-method-visa" value="card" type="radio"
                                        wire:model="paymentmode">
                                 <span>Debit / Credit Cart</span>
-                                <span
-                                    class="payment-desc">There are many variations of passages of Lorem Ipsum available</span>
+                                <span class="payment-desc">There are many variations of passages of Lorem Ipsum
+                                    available</span>
                             </label>
                             <label class="payment-method">
                                 <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio"
@@ -245,6 +250,8 @@
                     </div>
                 </div>
             </form>
-        </div><!--end main content area-->
-    </div><!--end container-->
+        </div>
+        <!--end main content area-->
+    </div>
+    <!--end container-->
 </main>
