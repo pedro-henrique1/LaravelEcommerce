@@ -28,6 +28,7 @@ use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\User\UserOrdersComponent;
 use App\Http\Livewire\User\UserOrdersDetailsComponent;
+use App\Http\Livewire\User\UserReviewComponent;
 use App\Http\Livewire\WishlistComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -65,9 +66,10 @@ Route::middleware(["auth:sanctum", "verified"])->prefix('user/')->group(
             "user.dashboard"
         );
         Route::get('orders', UserOrdersComponent::class)->name('user.orders');
-        Route::get('user/orders/{order_id}', UserOrdersDetailsComponent::class)->name(
+        Route::get('orders/{order_id}', UserOrdersDetailsComponent::class)->name(
             'user.orderDetails'
         );
+        Route::get('/review/{order_item_id}', UserReviewComponent::class)->name('user.review');
     }
 );
 
@@ -84,7 +86,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
             "admin.categories"
         );
         Route::get('category/add', AdminAddCategoryComponent::class)->name('admin.category.add');
-        Route::get('admin/category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
+        Route::get('category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
             'admin.category.edit'
         );
 
