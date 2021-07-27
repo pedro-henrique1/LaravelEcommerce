@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(1)->create();
         HomeCategory::factory()->count(5)->create();
         Sale::factory()->count(1)->create();
-        CouponFactory::factory()->count(1)->create();
-        SlideFactory::factory()->count(1)->create();
+        CouponFactory::new()->count(1)->create();
+        SlideFactory::new()->count(1)->create();
     }
 }

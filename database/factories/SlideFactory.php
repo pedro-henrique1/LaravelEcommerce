@@ -26,7 +26,7 @@ class SlideFactory extends Factory
             'title' => Str::random(10),
             'subtitle' => Str::random(10),
             'price' => random_int(10, 100),
-            'link' => ProductFactory::slug,
+            'link' => '/',
             'image' => "1626628200.jpg",
             'status' => '1'
         ];
