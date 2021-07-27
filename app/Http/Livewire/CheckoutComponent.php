@@ -85,7 +85,7 @@ class CheckoutComponent extends Component
             );
         }
         if ($this->paymentmode == 'card') {
-//            dd($this->paymentmode == 'card');
+            //            dd($this->paymentmode == 'card');
             $this->validateOnly(
                 $fields,
                 [
@@ -159,6 +159,7 @@ class CheckoutComponent extends Component
 
         foreach (Cart::instance('cart')->content() as $item) {
             $orderItem = new OrderItem();
+//            dd($item);
             $orderItem->product_id = $item->id;
             $orderItem->order_id = $item->id;
             $orderItem->price = $item->price;
@@ -248,7 +249,7 @@ class CheckoutComponent extends Component
                     [
                         'customer' => $customer['id'],
                         'currency' => 'USD',
-                        //? session()->get('checkout')['total']
+                        //! session()->get('checkout')['total']
                         'amount' => $totalFormate,
                         'description' => 'Payment for order no ' . $order->id
                     ]
