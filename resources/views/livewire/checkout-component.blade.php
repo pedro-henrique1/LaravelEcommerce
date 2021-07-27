@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class=" main-content-area">
-            <form wire:submit.prevent="placeOrder">
+            <form class="form" wire:submit.prevent="placeOrder">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -241,7 +241,7 @@
                             <p class="summary-info grand-total"><span>Grand Total</span> <span
                                     class="grand-total-price">${{Session::get('checkout')['total']}}</span></p>
                         @endif
-                        <button type="submit" class="btn btn-medium">Place order now</button>
+                        <button type="submit" class="btn btn-medium submit_button">Place order now</button>
                     </div>
                     <div class="summary-item shipping-method">
                         <h4 class="title-box f-title">Shipping method</h4>
