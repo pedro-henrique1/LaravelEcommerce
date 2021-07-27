@@ -13,10 +13,11 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create(
             'order_items',
             function (Blueprint $table) {
-                $table->id()->unique();
+                $table->id()->unsigned();
                 $table->bigInteger('product_id')->unsigned();
                 $table->bigInteger('order_id')->unsigned();
                 $table->decimal('price');
