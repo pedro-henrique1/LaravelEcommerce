@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Review;
 use Illuminate\Validation\ValidationException;
@@ -49,7 +48,7 @@ class UserReviewComponent extends Component
         session()->flash('message', 'Your review has been added successfully');
 
 
-        $orderItem = Order::find($this->order_item_id);
+        $orderItem = OrderItem::find($this->order_item_id);
         $orderItem->rstatus = true;
         $orderItem->save();
         session()->flash('message', 'Your review has been added successfully');

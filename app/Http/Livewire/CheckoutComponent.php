@@ -85,7 +85,6 @@ class CheckoutComponent extends Component
             );
         }
         if ($this->paymentmode == 'card') {
-            //            dd($this->paymentmode == 'card');
             $this->validateOnly(
                 $fields,
                 [
@@ -159,7 +158,6 @@ class CheckoutComponent extends Component
 
         foreach (Cart::instance('cart')->content() as $item) {
             $orderItem = new OrderItem();
-//            dd($item);
             $orderItem->product_id = $item->id;
             $orderItem->order_id = $item->id;
             $orderItem->price = $item->price;

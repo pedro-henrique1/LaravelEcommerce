@@ -10,8 +10,8 @@
                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
                                 id="li-comment-20">
                                 <div id="comment-20" class="comment_container">
-                                    <img alt="" src="{{ asset('assets/images')}}/{{$orderItem->product->image}}"
-                                         height="80" width="80">
+                                    <img alt="" src="{{ asset('assets/images/products')}}/{{$orderItem->product->image}}"
+                                         height="100" width="100">
                                     <div class="comment-text">
                                         <p class="meta">
                                             <strong
