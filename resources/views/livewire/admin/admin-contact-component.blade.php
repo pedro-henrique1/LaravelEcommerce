@@ -20,9 +20,6 @@
                         </div>
                     </div>
                     <div class='panel-body'>
-                        @if(Session::has('order_message'))
-                            <div class="alert alert-success">{{Session::get('order_message')}}</div>
-                        @endif
                         <table class="table table-striped  table-bordered">
                             <thead>
                             <tr>
