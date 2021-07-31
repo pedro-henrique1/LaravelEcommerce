@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
-use Livewire\Component;
 use illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class AdminEditProductComponent extends Component
 {
     use WithFileUploads;
+
     public $name;
     public $slug;
     public $short_description;
@@ -27,6 +28,9 @@ class AdminEditProductComponent extends Component
     public $newimage;
     public $product_id;
 
+    public $images;
+    public $newimages;
+
     public function mount($product_slug)
     {
         $product = Product::where('slug', $product_slug)->first();
@@ -41,9 +45,10 @@ class AdminEditProductComponent extends Component
         $this->featured = $product->featured;
         $this->quantity = $product->quantify;
         $this->image = $product->image;
+        $this->images = explode(',', $product->image);
         $this->category_id = $product->category_id;
         $this->newimage = $product->newimage;
-        $this->product_id = $product->product_id;
+        $this->product_id = $product->id;
     }
 
     public function generateSlug()
@@ -65,9 +70,28 @@ class AdminEditProductComponent extends Component
         $product->featured = $this->featured;
         $product->quantify = $this->quantity;
         if ($this->newimage) {
+            unlink('assets/images/product' . '/' . $product->image);
             $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
             $this->newimage->storeAs('products', $imageName);
             $product->image = $imageName;
+        }
+        if ($this->newimages) {
+            if ($product->images) {
+                $images = explode(',', $product->images);
+                foreach ($images as $image) {
+                    if ($image) {
+                        unlink('assets/images/product' . '/' . $image);
+                    }
+                }
+            }
+
+            $imagesname = '';
+            foreach ($this->newimages as $key => $image) {
+                $imgName = Carbon::now()->timestamp . $key . '.' . $image->extension();
+                $image->storeAs('product', $imgName);
+                $imagesname = $imagesname . ',' . $imgName;
+            }
+            $product->images = $imagesname;
         }
         $product->category_id = $this->category_id;
         $product->save();

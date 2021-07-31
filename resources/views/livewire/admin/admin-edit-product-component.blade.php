@@ -16,18 +16,18 @@
             </div>
             <div class="panel-body" style="border: 2px solid #ccc">
                 @if (Session::has('message'))
-                <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
+                    <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
                 @endif
 
                 <form class="form-horizontal g-3" method="POST" enctype="multipart/form-data"
-                    wire:submit.prevent="addProduct">
+                      wire:submit.prevent="addProduct">
                     {{ csrf_field() }}
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Name</label>
                         <div class="col-md-4">
                             <input name="" id="" class="form-control input-md" type="text" placeholder="Product Name"
-                                wire:model="name" wire:keyup="generateSlug">
+                                   wire:model="name" wire:keyup="generateSlug">
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                         <label class="col-md-4 control-label">Sale Price</label>
                         <div class="col-md-4">
                             <input name="" id="" class="form-control input-md" type="text" placeholder="Sale Price"
-                                wire:model="sale_price">
+                                   wire:model="sale_price">
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
                         <label for="" class="col-md-4 control-label">SKU</label>
                         <div class="col-md-4">
                             <input type="text" name="" id="" class="form-control input-md" placeholder="SKU"
-                                wire:model="SKU">
+                                   wire:model="SKU">
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@
                         <label for="" class="col-md-4 control-label">Quantity</label>
                         <div class="col-md-4">
                             <input type="text" name="" id="" class="form-control input-md" placeholder="Quantity"
-                                wire:model="quantity">
+                                   wire:model="quantity">
                         </div>
                     </div>
 
@@ -114,12 +114,36 @@
                         <div class="col-md-4">
                             <input type="file" class="input-file" wire:model="image">
                             @if ($newimage)
-                            <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
-                                class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
-                                alt="" style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                                <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
+                                     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
+                                     alt="" style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
                             @else
-                            <img src='{{ asset('assets/images/products') }}/{{ $image }}' alt=''
-                                style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                                <img src='{{ asset('assets/images/products') }}/{{ $image }}' alt=''
+                                     style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Product Gallery</label>
+                        <div class="col-md-4">
+                            <input type="file" class="input-file" wire:model="newimages" multiple>
+                            @if ($newimages)
+                                @foreach($newimages as $newimages)
+                                    @if($newimages)
+                                        <img src="{{ asset('assets/images/livewire-tmp/' . $image->getfilename())}}"
+                                             class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,w-"
+                                             alt="" style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                                    @endif
+                                @endforeach
+
+                            @else
+                                @foreach($images as $image)
+                                    @if($image)
+                                        <img src='{{ asset('assets/images/products') }}/{{ $image }}' alt=''
+                                             style="height: 140px;width:auto;margin: 1.3rem 0 0 0rem;">
+                                    @endif
+                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -130,7 +154,7 @@
                             <select class="form-control" name="" id="" wire:model="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
