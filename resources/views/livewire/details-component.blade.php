@@ -8,7 +8,6 @@
             text-decoration: line-through;
             padding-left: 10px;
         }
-
     </style>
     <div class="container">
 
@@ -27,18 +26,18 @@
                             <ul class="slides">
                                 <li data-thumb="{{asset('assets/images/products')}}/{{$product->image}}">
                                     <img src="{{asset('assets/images/products')}}/{{$product->image}}"
-                                         alt="{{$product->name}}"/>
+                                        alt="{{$product->name}}" />
                                 </li>
                                 @php
-                                    $images = explode(',', $product->images)
+                                $images = explode(',', $product->images)
                                 @endphp
                                 @foreach($images as $image)
-                                    @if($image)
-                                        <li data-thumb="{{ asset('assets/images/products') }}/{{$image}}">
-                                            <img src="{{ asset('assets/images/products') }}/{{$image}}"
-                                                 alt="{{ $product->name }}"/>
-                                        </li>
-                                    @endif
+                                @if($image)
+                                <li data-thumb="{{ asset('assets/images/products') }}/{{$image}}">
+                                    <img src="{{ asset('assets/images/products') }}/{{$image}}"
+                                        alt="{{ $product->name }}" />
+                                </li>
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -51,36 +50,34 @@
                                 }
                             </style>
                             @php
-                                $avgrating = 0;
+                            $avgrating = 0;
                             @endphp
                             @foreach($product->orderItems->where('rstatus', 1) as $orderItem)
-                                @php
-                                    $avgrating = $avgrating + $orderItem->review->rating;
-                                @endphp
+                            @php
+                            $avgrating = $avgrating + $orderItem->review->rating;
+                            @endphp
                             @endforeach
-                            @for($i=0; $i<=5; $i++)
-                                @if($i<=$avgrating)
-                                    <i class="fa fa-star" aria-hidden="true"></i>
+                            @for($i=0; $i<=5; $i++) @if($i<=$avgrating) <i class="fa fa-star" aria-hidden="true"></i>
                                 @else
-                                    <i class="fa fa-star color-gray" aria-hidden="true"></i>
+                                <i class="fa fa-star color-gray" aria-hidden="true"></i>
                                 @endif
-                            @endfor
-                            <a href="#" class="count-review">{{$product->orderItems->where('rstatus', 1)->count()}}
-                                review</a>
+                                @endfor
+                                <a href="#" class="count-review">{{$product->orderItems->where('rstatus', 1)->count()}}
+                                    review</a>
                         </div>
                         <h2 class="product-name">{{$product->name}}</h2>
                         <div class="short-desc">{{$product->short_description}}</div>
                         <div class="wrap-social">
                             <a class="link-socail" href="#"><img src="{{ asset('assets/images/social-list.png')}}"
-                                                                 alt=""></a>
+                                    alt=""></a>
                         </div>
                         @if ($product->sale_price > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
-                            <div class="wrap-price">
-                                <span class="product-price">{{$product->sale_price}}</span>
-                                <del><span class="product-price regprice">${{ $product->regular_price }}</span></del>
-                            </div>
+                        <div class="wrap-price">
+                            <span class="product-price">{{$product->sale_price}}</span>
+                            <del><span class="product-price regprice">${{ $product->regular_price }}</span></del>
+                        </div>
                         @else
-                            <div class="wrap-price"><span class="product-price">{{$product->regular_price}}</span></div>
+                        <div class="wrap-price"><span class="product-price">{{$product->regular_price}}</span></div>
                         @endif
 
                         <div class="stock-info in-stock">
@@ -91,20 +88,21 @@
                             <div class="quantity-input">
                                 <a class="btn btn-increase" href="#" wire:submit.prevent="increaseQuantity"></a>
                                 <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*"
-                                       wire:model="qty">
+                                    wire:model="qty">
                                 <a class="btn btn-reduce" href="#" wire:submit.prevent="decreseQuantity"></a>
                             </div>
                         </div>
                         <div class="wrap-butons">
-                            @if ($product->sale_price > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
-                                <a href="#" class="btn add-to-cart"
-                                   wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->sale_price}})">Add
-                                    to Cart</a>
+                            @if ($product->sale_price > 0 && $sale->status == 1 && $sale->sale_date >
+                            Carbon\Carbon::now())
+                            <a href="#" class="btn add-to-cart"
+                                wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->sale_price}})">Add
+                                to Cart</a>
                             @else
 
-                                <a href="#" class="btn add-to-cart"
-                                   wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->regular_price}})">Add
-                                    to Cart</a>
+                            <a href="#" class="btn add-to-cart"
+                                wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->regular_price}})">Add
+                                to Cart</a>
                             @endif
 
                             <div class="wrap-btn">
@@ -126,20 +124,20 @@
                             <div class="tab-content-item " id="add_infomation">
                                 <table class="shop_attributes">
                                     <tbody>
-                                    <tr>
-                                        <th>Weight</th>
-                                        <td class="product_weight">1 kg</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Dimensions</th>
-                                        <td class="product_dimensions">12 x 15 x 23 cm</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Color</th>
-                                        <td>
-                                            <p>Black, Blue, Grey, Violet, Yellow</p>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <th>Weight</th>
+                                            <td class="product_weight">1 kg</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Dimensions</th>
+                                            <td class="product_dimensions">12 x 15 x 23 cm</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Color</th>
+                                            <td>
+                                                <p>Black, Blue, Grey, Violet, Yellow</p>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -169,36 +167,39 @@
                                     </style>
 
                                     <div id="comments">
-                                        <h2 class="woocommerce-Reviews-title">{{$product->orderItems->where('rstatus', 1)->count()}}
+                                        <h2 class="woocommerce-Reviews-title">
+                                            {{$product->orderItems->where('rstatus', 1)->count()}}
                                             review for <span>{{$product->name}}</span>
                                         </h2>
                                         <ol class="commentlist">
                                             @foreach($product->orderItems->where('rstatus', 1) as $orderItem)
-                                                <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
-                                                    id="li-comment-20">
-                                                    <div id="comment-20" class="comment_container">
-                                                        <img alt="" src="{{ asset('assets/images/author-avata.jpg')}}"
-                                                             height="80" width="80">
-                                                        <div class="comment-text">
-                                                            <div class="star-rating">
+                                            <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
+                                                id="li-comment-20">
+                                                <div id="comment-20" class="comment_container">
+                                                    <img alt="" src="{{ asset('assets/images/author-avata.jpg')}}"
+                                                        height="80" width="80">
+                                                    <div class="comment-text">
+                                                        <div class="star-rating">
                                                             <span
-                                                                class="width-{{ $orderItem->review->rating * 20 }}-percent">Rated <strong
-                                                                    class="rating">{{ $orderItem->review->rating }}</strong> out of 5</span>
-                                                            </div>
-                                                            <p class="meta">
+                                                                class="width-{{ $orderItem->review->rating * 20 }}-percent">Rated
                                                                 <strong
-                                                                    class="woocommerce-review__author">{{ $orderItem->order->user->name }}</strong>
-                                                                <span class="woocommerce-review__dash">–</span>
-                                                                <time class="woocommerce-review__published-date"
-                                                                      datetime="2008-02-14 20:00">{{ Carbon\Carbon::parse($orderItem->review->created_at)->format('d F Y g:i A') }}
-                                                                </time>
-                                                            </p>
-                                                            <div class="description">
-                                                                <p>{{ $orderItem->review->comment }}</p>
-                                                            </div>
+                                                                    class="rating">{{ $orderItem->review->rating }}</strong>
+                                                                out of 5</span>
+                                                        </div>
+                                                        <p class="meta">
+                                                            <strong
+                                                                class="woocommerce-review__author">{{ $orderItem->order->user->name }}</strong>
+                                                            <span class="woocommerce-review__dash">–</span>
+                                                            <time class="woocommerce-review__published-date"
+                                                                datetime="2008-02-14 20:00">{{ Carbon\Carbon::parse($orderItem->review->created_at)->format('d F Y g:i A') }}
+                                                            </time>
+                                                        </p>
+                                                        <div class="description">
+                                                            <p>{{ $orderItem->review->comment }}</p>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </div>
+                                            </li>
                                             @endforeach
                                         </ol>
                                     </div><!-- #comments -->
@@ -255,26 +256,26 @@
                     <div class="widget-content">
                         <ul class="products">
                             @foreach($popular_products as $p_product)
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="{{route('product.details',['slug'=>$p_product->slug])}}"
-                                               title="{{$p_product->name}}">
-                                                <figure><img
-                                                        src="{{ asset('assets/images/products')}}/{{$p_product->image}}"
-                                                        alt="{{$p_product->name}}"></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="{{route('product.details',['slug'=>$p_product->slug])}}"
-                                               title="{{$p_product->name}}"
-                                               class="product-name"><span>{{$p_product->name}}</span>
-                                            </a>
-                                            <div class="wrap-price"><span
-                                                    class="product-price">{{$p_product->regular_price}}</span></div>
-                                        </div>
+                            <li class="product-item">
+                                <div class="product product-widget-style">
+                                    <div class="thumbnnail">
+                                        <a href="{{route('product.details',['slug'=>$p_product->slug])}}"
+                                            title="{{$p_product->name}}">
+                                            <figure><img
+                                                    src="{{ asset('assets/images/products')}}/{{$p_product->image}}"
+                                                    alt="{{$p_product->name}}"></figure>
+                                        </a>
                                     </div>
-                                </li>
+                                    <div class="product-info">
+                                        <a href="{{route('product.details',['slug'=>$p_product->slug])}}"
+                                            title="{{$p_product->name}}"
+                                            class="product-name"><span>{{$p_product->name}}</span>
+                                        </a>
+                                        <div class="wrap-price"><span
+                                                class="product-price">{{$p_product->regular_price}}</span></div>
+                                    </div>
+                                </div>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
@@ -286,32 +287,31 @@
                     <h3 class="title-box">Related Products</h3>
                     <div class="wrap-products">
                         <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5"
-                             data-loop="false" data-nav="true" data-dots="false"
-                             data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}'>
+                            data-loop="false" data-nav="true" data-dots="false"
+                            data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}'>
                             @foreach($related_products as $r_product)
-                                <div class="product product-style-2 equal-elem ">
-                                    <div class="product-thumnail">
-                                        <a href="{{route('product.details',['slug'=>$r_product->slug])}}"
-                                           title="{{$r_product->name}}">
-                                            <figure><img
-                                                    src="{{ asset('assets/images/products')}}/{{$r_product->image}}"
-                                                    width="214" height="214" alt="{{$r_product->name}}">
-                                            </figure>
-                                        </a>
-                                        <div class="group-flash">
-                                            <span class="flash-item new-label">new</span>
-                                        </div>
-                                        <div class="wrap-btn">
-                                            <a href="#" class="function-link">quick view</a>
-                                        </div>
+                            <div class="product product-style-2 equal-elem ">
+                                <div class="product-thumnail">
+                                    <a href="{{route('product.details',['slug'=>$r_product->slug])}}"
+                                        title="{{$r_product->name}}">
+                                        <figure><img src="{{ asset('assets/images/products')}}/{{$r_product->image}}"
+                                                width="214" height="214" alt="{{$r_product->name}}">
+                                        </figure>
+                                    </a>
+                                    <div class="group-flash">
+                                        <span class="flash-item new-label">new</span>
                                     </div>
-                                    <div class="product-info">
-                                        <a href="{{route('product.details',['slug'=>$r_product->slug])}}"
-                                           class="product-name"><span>{{$r_product->name}}</span></a>
-                                        <div class="wrap-price"><span
-                                                class="product-price">{{$r_product->price_regular}}</span></div>
+                                    <div class="wrap-btn">
+                                        <a href="#" class="function-link">quick view</a>
                                     </div>
                                 </div>
+                                <div class="product-info">
+                                    <a href="{{route('product.details',['slug'=>$r_product->slug])}}"
+                                        class="product-name"><span>{{$r_product->name}}</span></a>
+                                    <div class="wrap-price"><span
+                                            class="product-price">{{$r_product->price_regular}}</span></div>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -326,12 +326,11 @@
 }
 @else
 
-    <div class="container" style="margin-bottom: 40rem">
-        <div class="text-center">
-            <h1>You must be logged</h1>
-            <a id="" class="btn btn-primary" href="{{route('login')}}" role="button">Login</a>
-            <a id="" class="btn btn-primary" href="{{route('register')}}" role="button">Register</a>
-        </div>
+<div class="container" style="margin-bottom: 40rem">
+    <div class="text-center">
+        <h1>You must be logged</h1>
+        <a id="" class="btn btn-primary" href="{{route('login')}}" role="button">Login</a>
+        <a id="" class="btn btn-primary" href="{{route('register')}}" role="button">Register</a>
     </div>
-
+</div>
 @endif
