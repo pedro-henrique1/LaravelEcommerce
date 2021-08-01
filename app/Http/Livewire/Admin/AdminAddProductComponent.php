@@ -81,6 +81,7 @@ class AdminAddProductComponent extends Component
         }
         $product->category_id = $this->category_id;
         $product->save();
+        session()->flash('message', 'Product has been updated successfully');
     }
 
     public function render()

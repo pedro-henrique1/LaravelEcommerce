@@ -5,7 +5,6 @@
             font-size: 13px;
             color: #CF0000;
         }
-
     </style>
     <div class="container" style="padding: 30px 0;">
         <div class="col-md-12">
@@ -23,6 +22,9 @@
                 </div>
             </div>
             <div class="panel-body" style="border: 2px solid #ccc">
+                @if (Session::has('message'))
+                <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                @endif
                 <form class="form-horizontal g-3" method="POST" enctype="multipart/form-data"
                     wire:submit.prevent="addProduct">
                     @csrf
@@ -51,7 +53,8 @@
                         <label for="" class="col-md-4 control-label">Short Description</label>
                         <div class="col-md-4" wire:ignore>
                             <textarea class="form-control" name="shortDescription" id="shortDescription"
-                                placeholder="Short Description" rows="5" wire:model="short_description"></textarea>
+                                placeholder="Short Description" rows="5" wire:model="short_description"
+                                style="height: 10pc"></textarea>
                             @error('short_description') <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
@@ -91,8 +94,7 @@
                     <div class="form-group">
                         <label for="" class="col-md-4 control-label">SKU</label>
                         <div class="col-md-4">
-                            {{-- <span class="input-group-text" id="basic-addon1">@</span> --}}
-                            <input type="text" name="sku" id="sku" class="form-control input-md" placeholder="SKU"
+                            <input type="text" name="sku" id="sku" class="form-control input-md" placeholder="DIGI123"
                                 wire:model="SKU" aria-describedby="basic-addon">
                             @error('SKU') <span class='error'>{{ $message }}</span>
                             @enderror
@@ -132,7 +134,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Product Image</label>
                         <div class="col-md-4">
-                            <input type="file" name="image" id="image" class="input-file" wire:model="image">
+                            <input class="form-control" type="file" id="formFile" wire:model='image'>
                             @error('image') <span class='error'>{{ $message }}</span>
                             @enderror
                             @if ($image)
@@ -148,9 +150,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Product Image</label>
+                        <label class="col-md-4 control-label">Gallery Image</label>
                         <div class="col-md-4">
-                            <input type="file" name="image" id="image" class="input-file" wire:model="images" multiple>
+                            <input class="form-control" type="file" id="formFile" wire:model='images' multiple>
                             @error('images') <span class='error'>{{ $message }}</span>
                             @enderror
                             @if ($images)
@@ -204,7 +206,7 @@
                 editor.on('Change', function (e) {
                     tinyMCE.triggerSave();
                     let sd_data = $('#shortDescription').val();
-                    @this.set('shortDescription', sd_data);
+                    @this.set('short_description', sd_data);
                 })
             }
         });
@@ -219,50 +221,5 @@
             }
         });
     })
-
-
-    $(`#form-submit`).click((e) => {
-        let regularPrice = document.getElementById('regularPrice').value;
-        let productName = document.getElementById('productName').value;
-        let description = document.getElementById('description').value;
-        let sku = document.getElementById('sku').value;
-        if (regularPrice === '' || productName === '' || description === '' || sku === '') {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-
-            })
-            Toast.fire({
-                icon: 'error',
-                title: 'Error creating the product'
-            })
-            e.preventDefault();
-        } else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-
-            })
-            Toast.fire({
-                icon: 'success',
-                title: 'Product has bee created successfully'
-            })
-        }
-    });
-
 </script>
 @endpush
