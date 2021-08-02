@@ -50,8 +50,6 @@ Route::get("/", HomeComponent::class)->name('home');
 
 Route::get("/shop", ShopComponent::class)->name('shop');
 
-Route::get("/about")->name('home.about');
-
 Route::get("/contact-us", ContactComponent::class)->name('home.contact');
 
 Route::get("/cart", CartComponent::class)->name('product.cart');

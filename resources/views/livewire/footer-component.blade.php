@@ -170,7 +170,8 @@
                                             <li><a href="{{ $setting->instagram }}" class="link-to-item"
                                                    title="instagram"><i
                                                         class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                            <li><a href="{{ $setting->youtube }}" class="link-to-item" title="youtube"><i
+                                            <li><a href="{{ $setting->youtube }}" class="link-to-item"
+                                                   title="youtube"><i
                                                         class="fa fa-youtube"
                                                         aria-hidden="true"></i></a>
                                             </li>
@@ -298,7 +299,7 @@
                     <div class="coppy-right-item item-right">
                         <div class="wrap-nav horizontal-nav">
                             <ul>
-                                <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>
+                                <li class="menu-item"><a href="" class="link-term">About us</a></li>
                                 <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy Policy</a>
                                 </li>
                                 <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms &
