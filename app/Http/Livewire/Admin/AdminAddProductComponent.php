@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminAddProductComponent extends Component
 {
@@ -26,6 +25,7 @@ class AdminAddProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
+    public $images;
 
     protected $rules = [
         'name' => 'required|max:255|min:5',
@@ -38,7 +38,7 @@ class AdminAddProductComponent extends Component
         'stock_status' => 'required',
         'quantity' => 'required|numeric',
         'image' => 'required|image',
-        // 'category_id' => 'required|unique:connection.categories'
+        'category_id' => 'required'
     ];
 
     public function mount()
@@ -69,8 +69,19 @@ class AdminAddProductComponent extends Component
         $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
         $this->image->storeAs('products', $imageName);
         $product->image = $imageName;
+
+        if ($this->images) {
+            $imagesname = '';
+            foreach ($this->images as $key => $image) {
+                $image = Carbon::now()->timestamp . '.' . $image->extension();
+                $this->image->storeAs('products', $image);
+                $imagesname = $imagesname . ',' . $imageName;
+            }
+            $product->images = $imagesname;
+        }
         $product->category_id = $this->category_id;
         $product->save();
+        session()->flash('message', 'Product has been updated successfully');
     }
 
     public function render()

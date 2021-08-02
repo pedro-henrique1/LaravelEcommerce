@@ -1,33 +1,41 @@
 <?php
 
-use App\Http\Livewire\Admin\AdminAddCouponComponent;
-use App\Http\Livewire\Admin\AdminCouponsComponent;
-use App\Http\Livewire\Admin\AdminEditCouponComponent;
-use App\Http\Livewire\Admin\AdminSaleComponent;
-use App\Http\Livewire\WishlistComponent;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
+use App\Http\Livewire\Admin\AdminAddCouponComponent;
 use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminAddProductComponent;
-use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminCategoryComponent;
+use App\Http\Livewire\Admin\AdminContactComponent;
+use App\Http\Livewire\Admin\AdminCouponsComponent;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminEditCategoryComponent;
+use App\Http\Livewire\Admin\AdminEditCouponComponent;
 use App\Http\Livewire\Admin\AdminEditHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminEditProductComponent;
 use App\Http\Livewire\Admin\AdminHomeCategoryComponent;
 use App\Http\Livewire\Admin\AdminHomeSliderComponent;
+use App\Http\Livewire\Admin\AdminOrderComponent;
+use App\Http\Livewire\Admin\AdminOrderDetailsComponent as AdminOrderDetailsComponentAlias;
 use App\Http\Livewire\Admin\AdminProductComponent;
-
-
-use App\Http\Livewire\CategoryComponent;
-use App\Http\Livewire\DetailsComponent;
-use App\Http\Livewire\SearchComponent;
-use App\Http\Livewire\User\UserDashboardComponent;
+use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\Admin\AdminSettingComponent;
 use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\ContactComponent;
+use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
+use App\Http\Livewire\ThankyouComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
+use App\Http\Livewire\User\UserDashboardComponent;
+use App\Http\Livewire\User\UserOrdersComponent;
+use App\Http\Livewire\User\UserOrdersDetailsComponent;
+use App\Http\Livewire\User\UserReviewComponent;
+use App\Http\Livewire\WishlistComponent;
+use Illuminate\Support\Facades\Route;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -42,9 +50,7 @@ Route::get("/", HomeComponent::class)->name('home');
 
 Route::get("/shop", ShopComponent::class)->name('shop');
 
-Route::get("/about")->name('home.about');
-
-Route::get("/contact")->name('home.contact');
+Route::get("/contact-us", ContactComponent::class)->name('home.contact');
 
 Route::get("/cart", CartComponent::class)->name('product.cart');
 Route::get("/checkout", CheckoutComponent::class)->name('product.checkout');
@@ -54,12 +60,19 @@ Route::get('/search', SearchComponent::class)->name('product.search');
 
 Route::get('wishlist', WishlistComponent::class)->name('product.wishlist');
 
+Route::get('/thanks-you', ThankyouComponent::class)->name('thanksYou');
 
-Route::middleware(["auth:sanctum", "verified"])->prefix('user')->group(
+Route::middleware(["auth:sanctum", "verified"])->prefix('user/')->group(
     function () {
-        Route::get("/dashboard", UserDashboardComponent::class)->name(
+        Route::get("dashboard", UserDashboardComponent::class)->name(
             "user.dashboard"
         );
+        Route::get('orders', UserOrdersComponent::class)->name('user.orders');
+        Route::get('orders/{order_id}', UserOrdersDetailsComponent::class)->name(
+            'user.orderDetails'
+        );
+        Route::get('review/{order_item_id}', UserReviewComponent::class)->name('user.review');
+        Route::get('change-password', UserChangePasswordComponent::class)->name('user.change.password');
     }
 );
 
@@ -76,7 +89,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
             "admin.categories"
         );
         Route::get('category/add', AdminAddCategoryComponent::class)->name('admin.category.add');
-        Route::get('admin/category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
+        Route::get('category/edit/{category_slug}', AdminEditCategoryComponent::class)->name(
             'admin.category.edit'
         );
 
@@ -98,5 +111,14 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->prefix('admin/')->
         Route::get('coupons', AdminCouponsComponent::class)->name('admin.coupons');
         Route::get('coupons/add', AdminAddCouponComponent::class)->name('admin.coupons.add');
         Route::get('coupons/edit/{coupon_id}', AdminEditCouponComponent::class)->name('admin.coupons.edit');
+
+
+        Route::get('orders', AdminOrderComponent::class)->name('admin.orders');
+
+        Route::get('orders/{order_id}', AdminOrderDetailsComponentAlias::class)->name('admin.order.details');
+
+        Route::get("contact-us", AdminContactComponent::class)->name('admin.contact');
+
+        Route::get('settings', AdminSettingComponent::class)->name('admin.settings');
     }
 );

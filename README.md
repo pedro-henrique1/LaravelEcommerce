@@ -1,4 +1,4 @@
-<h1 style="text-align:center">Ecommerce</h1>
+<h1 align="center">Ecommerce com laravel</h1>
 <br>
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/pedro-henrique1/LaravelEcommerce?color=56BEB8">
@@ -11,6 +11,15 @@
 </p>
 <br>
 
+## status
+
+<h4 align="center"> 
+<!-- Finalizado 🚀  || Ecommerce 🚀  -->
+	🚧  Em  construção...  🚧
+</h4>
+
+<br>
+ 
 ## :dart: Sobre
 
 <p style="font-size:15px">Este projeto foi criado com intuito de aprimorar minhas habilidades com laravel e php</p>
@@ -19,13 +28,11 @@
 
 ## :rocket: Tecnologias
 
-- Php
-- Laravel
-- Livewire
-- Mysql
-
-<br>
-<br>
+- **Php**
+- **Laravel**
+- **Livewire**
+- **Mysql**
+  <br>
 
 ## :white_check_mark: Requisitos
 
@@ -68,4 +75,4 @@ Feito com ❤️ de <a href="https://github.com/pedro-henrique1" target="_blank"
 
 [![LinkedIn](https://img.shields.io/badge/-LINKEDIN-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedro-henrique-silva-rodrigues-0544ab199/) [![instagram](https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pedro_henrique_dev/)
 
-[Link do projeto no youtube](https://www.youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)
+_[Link do projeto no youtube](https://www.youtube.com/playlist?list=PLz_YkiqIHesvPtvLl2Wz5FtuW44dBt199)_

@@ -24,14 +24,7 @@ class HomeComponent extends Component
         $sale = Sale::find(1);
         return view(
             'livewire.home-component',
-            [
-                'sliders' => $sliders,
-                'lproducts' => $lproducts,
-                'categories' => $categories,
-                'no_of_products' => $no_of_products,
-                'sproducts' => $sproducts,
-                'sale' => $sale
-            ]
+            compact('sale', 'sliders', 'lproducts', 'categories', 'no_of_products', 'sproducts')
         )->layout(
             'layouts.base'
         );

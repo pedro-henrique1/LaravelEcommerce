@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-base-layout>
     <main id="main" class="main-site left-sidebar">
         <div class="container">
             <div class="wrap-breadcrumb">
@@ -12,9 +12,9 @@
                     <div class=" main-content-area">
                         <div class="wrap-login-item ">
                             <div class="register-form form-item ">
-                                <x-jet-validation-errors class="mb-4"/>
-                                <form class="form-stl" method="POST" action="{{route('register')}}" name="frm-login" >
-                                @csrf
+                                <x-jet-validation-errors class="mb-4" />
+                                <form class="form-stl" method="POST" action="{{route('register')}}" name="frm-login">
+                                    @csrf
                                     <fieldset class="wrap-title">
                                         <h3 class="form-title">Create an account</h3>
                                         <h4 class="form-subtitle">Personal information</h4>
@@ -35,7 +35,8 @@
                                     </fieldset>
                                     <fieldset class="wrap-input item-width-in-half left-item ">
                                         <label for="frm-reg-pass">Password *</label>
-                                        <input type="password" id="frm-reg-pass" name="password" placeholder="Password" required autocomplete="new-password">
+                                        <input type="password" id="frm-reg-pass" name="password" placeholder="Password"
+                                            required autocomplete="new-password">
                                     </fieldset>
                                     <fieldset class="wrap-input item-width-in-half ">
                                         <label for="frm-reg-pass-conf">Confirm Password *</label>
@@ -51,4 +52,4 @@
             </div>
         </div>
     </main>
-</x-guest-layout>
+</x-base-layout>

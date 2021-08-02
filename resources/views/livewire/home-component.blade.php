@@ -138,6 +138,7 @@
                 <div class="wrap-product-tab tab-style-1">
 
                     <div class="tab-control">
+                        {{-- @dd($categories) --}}
                         @foreach ($categories as $key=>$category)
                         <a href="#category_{{ $category->id }}"
                             class="tab-control-item {{ $key == 0 ? 'active': '' }}">{{ $category->name }}</a>

@@ -10,7 +10,7 @@ class Shipping extends Model
 {
     use HasFactory;
 
-    protected $table = 'Order_items';
+    protected $table = 'shippings';
 
     public function order(): BelongsTo
     {

@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class AddExpiryDateToCouponsTable extends Migration
 {
@@ -32,7 +31,7 @@ class AddExpiryDateToCouponsTable extends Migration
         Schema::table(
             'coupons',
             function (Blueprint $table) {
-                $table->date('expire_date')->default(DB::raw('CURRENT_DATE'));
+                $table->date('expire_date')->default(now());
             }
         );
     }

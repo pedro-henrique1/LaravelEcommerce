@@ -54,7 +54,6 @@
                                     </div>
                                     <a href="{{route('product.details',['slug'=>$item->model->slug])}}"
                                        title="{{$item->model->name}}" class="btn add-to-cart"
-                                       {{--                                       @dd($item->rowId);--}}
                                        wire:click.prevent="moveProductFromWishlistToCart('{{$item->rowId}}')">Move
                                         To Cart</a>
                                     <div class="product-wish">

@@ -4,34 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static find($order_id)
+ */
 class Order extends Model
 {
     use HasFactory;
 
     protected $table = 'orders';
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function orderItems(): HasMany
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 
-    public function shipping(): HasOne
+    public function shipping()
     {
         return $this->hasOne(Shipping::class);
     }
 
-    public function transaction(): HasOne
+    public function transaction()
     {
         return $this->hasOne(Transaction::class);
     }
-
 }

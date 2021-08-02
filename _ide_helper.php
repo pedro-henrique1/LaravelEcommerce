@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.48.1.
+ * Generated for Laravel 8.51.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1972,7 +1972,7 @@
          *
          * @param string $password
          * @param string $attribute
-         * @return bool|null 
+         * @return \App\Models\User|null 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
@@ -5952,6 +5952,20 @@
                         $instance->replace($path, $content);
         }
                     /**
+         * Replace a given string within a given file.
+         *
+         * @param array|string $search
+         * @param array|string $replace
+         * @param string $path
+         * @return void 
+         * @static 
+         */ 
+        public static function replaceInFile($search, $replace, $path)
+        {
+                        /** @var \Illuminate\Filesystem\Filesystem $instance */
+                        $instance->replaceInFile($search, $replace, $path);
+        }
+                    /**
          * Prepend to a file.
          *
          * @param string $path
@@ -7394,6 +7408,8 @@
             /**
      * 
      *
+     * @method static \Illuminate\Log\Logger withContext(array $context = [])
+     * @method static \Illuminate\Log\Logger withoutContext()
      * @method static void write(string $level, string $message, array $context = [])
      * @method static void listen(\Closure $callback)
      * @see \Illuminate\Log\Logger
@@ -10743,13 +10759,14 @@
          *
          * @param string $key
          * @param callable $callback
+         * @param callable|null $default
          * @return $this|mixed 
          * @static 
          */ 
-        public static function whenHas($key, $callback)
+        public static function whenHas($key, $callback, $default = null)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->whenHas($key, $callback);
+                        return $instance->whenHas($key, $callback, $default);
         }
                     /**
          * Determine if the request contains a non-empty value for an input item.
@@ -10792,13 +10809,14 @@
          *
          * @param string $key
          * @param callable $callback
+         * @param callable|null $default
          * @return $this|mixed 
          * @static 
          */ 
-        public static function whenFilled($key, $callback)
+        public static function whenFilled($key, $callback, $default = null)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->whenFilled($key, $callback);
+                        return $instance->whenFilled($key, $callback, $default);
         }
                     /**
          * Determine if the request is missing a given input item key.
@@ -13813,6 +13831,56 @@
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->getDriver();
         }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Illuminate\Filesystem\FilesystemAdapter::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Illuminate\Filesystem\FilesystemAdapter::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Illuminate\Filesystem\FilesystemAdapter::hasMacro($name);
+        }
+                    /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */ 
+        public static function macroCall($method, $parameters)
+        {
+                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        return $instance->macroCall($method, $parameters);
+        }
          
     }
             /**
@@ -14392,6 +14460,17 @@
         {
                         /** @var \Illuminate\Validation\Factory $instance */
                         $instance->replacer($rule, $replacer);
+        }
+                    /**
+         * Indicate that unvalidated array keys should be excluded, even if the parent array was validated.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function excludeUnvalidatedArrayKeys()
+        {
+                        /** @var \Illuminate\Validation\Factory $instance */
+                        $instance->excludeUnvalidatedArrayKeys();
         }
                     /**
          * Set the Validator instance resolver.
@@ -15992,6 +16071,209 @@
         {
                         /** @var \RealRashid\SweetAlert\Toaster $instance */
                         return $instance->buildConfig();
+        }
+         
+    }
+     
+}
+
+    namespace Cartalyst\Stripe\Laravel\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Stripe {
+                    /**
+         * Create a new Stripe API instance.
+         *
+         * @param string $apiKey
+         * @param string $apiVersion
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function make($apiKey = null, $apiVersion = null)
+        {
+                        return \Cartalyst\Stripe\Stripe::make($apiKey, $apiVersion);
+        }
+                    /**
+         * Returns the current package version.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getVersion()
+        {
+                        return \Cartalyst\Stripe\Stripe::getVersion();
+        }
+                    /**
+         * Returns the Config repository instance.
+         *
+         * @return \Cartalyst\Stripe\ConfigInterface 
+         * @static 
+         */ 
+        public static function getConfig()
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->getConfig();
+        }
+                    /**
+         * Sets the Config repository instance.
+         *
+         * @param \Cartalyst\Stripe\ConfigInterface $config
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function setConfig($config)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->setConfig($config);
+        }
+                    /**
+         * Returns the Stripe API key.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getApiKey()
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->getApiKey();
+        }
+                    /**
+         * Sets the Stripe API key.
+         *
+         * @param string $apiKey
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function setApiKey($apiKey)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->setApiKey($apiKey);
+        }
+                    /**
+         * Returns the Stripe API version.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getApiVersion()
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->getApiVersion();
+        }
+                    /**
+         * Sets the Stripe API version.
+         *
+         * @param string $apiVersion
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function setApiVersion($apiVersion)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->setApiVersion($apiVersion);
+        }
+                    /**
+         * Sets the idempotency key.
+         *
+         * @param string|null $idempotencyKey
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function idempotent($idempotencyKey)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->idempotent($idempotencyKey);
+        }
+                    /**
+         * Sets the account id.
+         *
+         * @param string|null $accountId
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function accountId($accountId)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->accountId($accountId);
+        }
+                    /**
+         * Returns the application's information.
+         *
+         * @return array|null 
+         * @static 
+         */ 
+        public static function getAppInfo()
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->getAppInfo();
+        }
+                    /**
+         * Sets the application's information.
+         *
+         * @param string $appName
+         * @param string $appVersion
+         * @param string $appUrl
+         * @param string $appPartnerId
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */ 
+        public static function setAppInfo($appName, $appVersion = null, $appUrl = null, $appPartnerId = null)
+        {
+                        /** @var \Cartalyst\Stripe\Stripe $instance */
+                        return $instance->setAppInfo($appName, $appVersion, $appUrl, $appPartnerId);
+        }
+                    /**
+         * Returns the amount converter class and method name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAmountConverter()
+        {
+                        return \Cartalyst\Stripe\Stripe::getAmountConverter();
+        }
+                    /**
+         * Sets the amount converter class and method name.
+         *
+         * @param $amountConverter string
+         * @return void 
+         * @static 
+         */ 
+        public static function setAmountConverter($amountConverter)
+        {
+                        \Cartalyst\Stripe\Stripe::setAmountConverter($amountConverter);
+        }
+                    /**
+         * Disables the amount converter.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function disableAmountConverter()
+        {
+                        \Cartalyst\Stripe\Stripe::disableAmountConverter();
+        }
+                    /**
+         * Returns the default amount converter.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultAmountConverter()
+        {
+                        return \Cartalyst\Stripe\Stripe::getDefaultAmountConverter();
+        }
+                    /**
+         * Sets the default amount converter;
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultAmountConverter()
+        {
+                        \Cartalyst\Stripe\Stripe::setDefaultAmountConverter();
         }
          
     }
@@ -17809,9 +18091,8 @@ namespace  {
              * @param int|null $perPage
              * @param array $columns
              * @param string $cursorName
-             * @param string|null $cursor
+             * @param \Illuminate\Pagination\Cursor|string|null $cursor
              * @return \Illuminate\Contracts\Pagination\CursorPaginator 
-             * @throws \Illuminate\Pagination\CursorPaginationException
              * @static 
              */ 
             public static function cursorPaginate($perPage = null, $columns = [], $cursorName = 'cursor', $cursor = null)
@@ -18623,7 +18904,7 @@ namespace  {
              * @param mixed $value
              * @param callable $callback
              * @param callable|null $default
-             * @return mixed 
+             * @return $this|mixed 
              * @static 
              */ 
             public static function when($value, $callback, $default = null)
@@ -18638,7 +18919,7 @@ namespace  {
              * @param mixed $value
              * @param callable $callback
              * @param callable|null $default
-             * @return mixed 
+             * @return $this|mixed 
              * @static 
              */ 
             public static function unless($value, $callback, $default = null)
@@ -18734,6 +19015,7 @@ namespace  {
                 /**
              * Force the query to only return distinct results.
              *
+             * @param mixed $distinct
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -19844,7 +20126,7 @@ namespace  {
                 /**
              * Add a descending "order by" clause to the query.
              *
-             * @param string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -19980,7 +20262,7 @@ namespace  {
                 /**
              * Remove all existing orders and optionally add a new order.
              *
-             * @param string|null $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string|null $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -20600,6 +20882,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Cart extends \Gloudemans\Shoppingcart\Facades\Cart {}
             class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
+            class Stripe extends \Cartalyst\Stripe\Laravel\Facades\Stripe {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Livewire extends \Livewire\Livewire {}
