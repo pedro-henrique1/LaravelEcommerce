@@ -14,8 +14,8 @@
 ## status
 
 <h4 align="center"> 
-<!-- Finalizado 🚀  || Ecommerce 🚀  -->
-	🚧  Em  construção...  🚧
+ Finalizado 🚀  
+	<!--  🚧  Em  construção...  🚧 -->
 </h4>
 
 <br>
